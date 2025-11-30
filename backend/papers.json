@@ -18,7 +18,8 @@
       "P003",
       "P007",
       "P010"
-    ]
+    ],
+    "link": "https://link.springer.com/article/10.1007/s42979-021-00815-1"
   },
   {
     "id": "P002",
@@ -38,7 +39,8 @@
     "references": [
       "P005",
       "P012"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Efficient+Algorithms+for+Large-Scale+Graph+Processing"
   },
   {
     "id": "P003",
@@ -58,7 +60,8 @@
     "references": [
       "P001",
       "P007"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Transformer+Architectures+for+Natural+Language+Understanding"
   },
   {
     "id": "P004",
@@ -78,7 +81,8 @@
     "references": [
       "P011",
       "P013"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Relational+Database+Optimization+Techniques"
   },
   {
     "id": "P005",
@@ -98,7 +102,8 @@
     "references": [
       "P002",
       "P011"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Distributed+Systems+Consistency+and+Availability+Trade-offs"
   },
   {
     "id": "P006",
@@ -118,7 +123,8 @@
     "references": [
       "P001",
       "P010"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Reinforcement+Learning+for+Autonomous+Systems"
   },
   {
     "id": "P007",
@@ -137,7 +143,8 @@
     "abstract": "This comprehensive study explores convolutional neural network architectures and their applications in computer vision. We analyze various CNN designs including ResNet, DenseNet, and EfficientNet, examining their architectural innovations and performance characteristics. The paper includes extensive experiments on image classification, object detection, and semantic segmentation tasks, providing insights into design choices that lead to improved accuracy and efficiency.",
     "references": [
       "P001"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Convolutional+Neural+Networks+for+Computer+Vision"
   },
   {
     "id": "P008",
@@ -157,7 +164,8 @@
     "references": [
       "P005",
       "P011"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Blockchain+Technology+Security+and+Scalability"
   },
   {
     "id": "P009",
@@ -177,7 +185,8 @@
     "references": [
       "P002",
       "P005"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Cloud+Computing+Resource+Allocation+and+Scheduling"
   },
   {
     "id": "P010",
@@ -198,7 +207,8 @@
       "P001",
       "P003",
       "P007"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Neural+Architecture+Search+Automating+Deep+Learning+Model+Design"
   },
   {
     "id": "P011",
@@ -217,7 +227,8 @@
     "abstract": "This paper examines the design principles underlying NoSQL database systems and their appropriate use cases. We compare document stores, key-value stores, column-family databases, and graph databases, analyzing their strengths and limitations. The study includes performance evaluations and guidelines for selecting the appropriate database technology based on application requirements, data characteristics, and scalability needs.",
     "references": [
       "P004"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=NoSQL+Databases+Design+Principles+and+Use+Cases"
   },
   {
     "id": "P012",
@@ -236,7 +247,8 @@
     "abstract": "We investigate parallel computing paradigms and their application to scientific problems. The research covers shared-memory and distributed-memory architectures, discussing programming models including OpenMP, MPI, and CUDA. We present case studies from computational physics, bioinformatics, and climate modeling, demonstrating how parallel algorithms can achieve significant speedups on modern supercomputing systems.",
     "references": [
       "P002"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Parallel+Computing+Paradigms+for+Scientific+Applications"
   },
   {
     "id": "P013",
@@ -255,7 +267,8 @@
     "abstract": "This comprehensive survey explores data mining techniques for discovering patterns in large datasets. We review classification, clustering, association rule mining, and anomaly detection algorithms. The paper includes comparative studies of different approaches, discussing their computational complexity, accuracy, and applicability to various domains including e-commerce, healthcare, and financial services.",
     "references": [
       "P004"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Data+Mining+Techniques+for+Pattern+Discovery"
   },
   {
     "id": "P014",
@@ -275,7 +288,8 @@
     "references": [
       "P001",
       "P005"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Federated+Learning+Privacy-Preserving+Machine+Learning"
   },
   {
     "id": "P015",
@@ -295,6 +309,7 @@
     "references": [
       "P005",
       "P009"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Edge+Computing+Bringing+Computation+Closer+to+Data+Sources"
   }
 ]

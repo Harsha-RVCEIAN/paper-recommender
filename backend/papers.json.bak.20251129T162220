@@ -14,19 +14,19 @@
       "artificial intelligence"
     ],
     "abstract": "This paper provides a comprehensive overview of deep learning techniques and their applications across various domains. We explore convolutional neural networks, recurrent architectures, and transformer models, discussing their theoretical foundations and practical implementations. The survey covers recent advances in optimization methods, regularization techniques, and emerging architectures that have revolutionized computer vision, natural language processing, and reinforcement learning.",
-    "citations_count": 145,
     "references": [
       "P003",
       "P007",
       "P010"
-    ]
+    ],
+    "link": "https://link.springer.com/article/10.1007/s42979-021-00815-1"
   },
   {
     "id": "P002",
-    "title": "Efficient Algorithms for Large-Scale Graph Processing",
+    "title": "Efficient Large-Scale Graph Processing on Hybrid CPU and GPU Systems",
     "authors": [
-      "David Miller",
-      "Emily Rodriguez"
+      "Elizeu santos-neto",
+      "Abdullah Gharaibeh"
     ],
     "year": 2020,
     "keywords": [
@@ -36,15 +36,15 @@
       "scalability"
     ],
     "abstract": "We present novel algorithms for processing massive graphs in distributed environments. Our approach leverages parallel computing paradigms and efficient data structures to achieve significant performance improvements over traditional methods. We demonstrate the effectiveness of our algorithms on real-world social network and web graph datasets, achieving up to 10x speedup compared to state-of-the-art solutions while maintaining accuracy.",
-    "citations_count": 89,
     "references": [
       "P005",
       "P012"
-    ]
+    ],
+    "link": "https://arxiv.org/pdf/1312.3018"
   },
   {
     "id": "P003",
-    "title": "Transformer Architectures for Natural Language Understanding",
+    "title": "Advancements in Natural Language Processing: Exploring Transformer-Based Architectures for Text Understandin",
     "authors": [
       "Lisa Wang",
       "James Anderson"
@@ -56,19 +56,19 @@
       "attention mechanism",
       "deep learning"
     ],
-    "abstract": "This research investigates transformer architectures and their impact on natural language understanding tasks. We analyze the self-attention mechanism, positional encoding strategies, and layer normalization techniques that enable transformers to capture long-range dependencies effectively. Our experiments on benchmark datasets including GLUE, SQuAD, and SuperGLUE demonstrate consistent improvements in performance across multiple NLP tasks.",
-    "citations_count": 210,
+    "abstract": "Natural Language Processing (NLP) has witnessed a transformative leap with the advent of transformer-based architectures, which have significantly enhanced the ability of machines to understand and generate human-like text. This paper explores the advancements in transformer models, such as BERT and GPT, focusing on their superior performance in text understanding tasks compared to traditional methods like recurrent neural networks (RNNs).",
     "references": [
       "P001",
       "P007"
-    ]
+    ],
+    "link": "https://www.researchgate.net/publication/390213561_Advancements_in_Natural_Language_Processing_Exploring_Transformer-Based_Architectures_for_Text_Understanding"
   },
   {
     "id": "P004",
-    "title": "Relational Database Optimization Techniques",
+    "title": "Relational Database Performance Optimization Techniques",
     "authors": [
-      "Robert Taylor",
-      "Jennifer Lee"
+      "Ankit Sharma",
+      "Sahshi Gill"
     ],
     "year": 2019,
     "keywords": [
@@ -78,17 +78,17 @@
       "performance tuning"
     ],
     "abstract": "We explore advanced optimization techniques for relational database management systems. The paper covers query execution planning, index selection strategies, and caching mechanisms that significantly enhance database performance. We introduce a cost-based optimizer that considers multiple execution plans and selects the most efficient approach based on statistical analysis of data distribution and access patterns.",
-    "citations_count": 67,
     "references": [
       "P011",
       "P013"
-    ]
+    ],
+    "link": "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.atlantis-press.com/article/126011462.pdf&ved=2ahUKEwjtrM3HkpmRAxUkumMGHWazCEAQFnoECC0QAQ&usg=AOvVaw0sjvoe_qhhtgNrm9v8MzJX"
   },
   {
     "id": "P005",
-    "title": "Distributed Systems: Consistency and Availability Trade-offs",
+    "title": "Consistency and Availability in Distributed Databases and Caching Systems",
     "authors": [
-      "Kevin Brown",
+      "Oluwaseyi Kolawole Oladele",
       "Amanda Martinez"
     ],
     "year": 2020,
@@ -98,19 +98,19 @@
       "CAP theorem",
       "fault tolerance"
     ],
-    "abstract": "This paper examines the fundamental trade-offs between consistency, availability, and partition tolerance in distributed systems. We present theoretical frameworks and practical implementations of various consistency models including strong consistency, eventual consistency, and causal consistency. Our analysis includes case studies of production systems at scale, demonstrating how different consistency guarantees impact system behavior under various failure scenarios.",
-    "citations_count": 123,
+    "abstract": "In distributed databases and caching systems, ensuring high availability while maintaining consistency has been a persistent challenge due to the inherent limitations imposed by distributed environments. The CAP theorem highlights the impossibility of simultaneously guaranteeing strong consistency, high availability, and tolerance to network partitions, forcing system designers to make trade-offs depending on application requirements.",
     "references": [
       "P002",
       "P011"
-    ]
+    ],
+    "link": "https://www.researchgate.net/publication/395012293_Consistency_and_Availability_in_Distributed_Databases_and_Caching_Systems"
   },
   {
     "id": "P006",
     "title": "Reinforcement Learning for Autonomous Systems",
     "authors": [
-      "Daniel Kim",
-      "Sophia Patel"
+      "Axel Egon",
+      "Peter Broklyn"
     ],
     "year": 2021,
     "keywords": [
@@ -119,19 +119,19 @@
       "machine learning",
       "robotics"
     ],
-    "abstract": "We investigate reinforcement learning algorithms for training autonomous agents in complex environments. The paper covers model-free and model-based approaches, including Q-learning, policy gradient methods, and actor-critic architectures. We demonstrate successful applications in robotic manipulation, autonomous navigation, and game playing, achieving human-level performance on several challenging tasks.",
-    "citations_count": 156,
+    "abstract": "Reinforcement learning (RL) has emerged as a powerful paradigm for developing autonomous systems, enabling agents to learn optimal decision-making strategies through interactions with their environment. Unlike traditional programming approaches, where explicit rules dictate behavior, RL allows agents to adapt and improve based on feedback from their actions, leading  to more robust and flexible systems",
     "references": [
       "P001",
       "P010"
-    ]
+    ],
+    "link": "https://www.researchgate.net/publication/385492832_REINFORCEMENT_LEARNING_FOR_AUTONOMOUS_SYSTEMS"
   },
   {
     "id": "P007",
-    "title": "Convolutional Neural Networks for Computer Vision",
+    "title": "A review of convolutional neural networks in computer vision",
     "authors": [
-      "Alex Thompson",
-      "Maria Garcia"
+      "Xia Zhao",
+      "Limin Wang"
     ],
     "year": 2020,
     "keywords": [
@@ -140,15 +140,15 @@
       "image recognition",
       "deep learning"
     ],
-    "abstract": "This comprehensive study explores convolutional neural network architectures and their applications in computer vision. We analyze various CNN designs including ResNet, DenseNet, and EfficientNet, examining their architectural innovations and performance characteristics. The paper includes extensive experiments on image classification, object detection, and semantic segmentation tasks, providing insights into design choices that lead to improved accuracy and efficiency.",
-    "citations_count": 178,
+    "abstract": "The CNN has superior features for autonomous learning and expression, and feature extraction from original input data can be realized by means of training CNN models that match practical applications. Due to the rapid progress in deep learning technology, the structure of CNN is becoming more and more complex and diverse. Consequently, it gradually replaces the traditional machine learning methods. ",
     "references": [
       "P001"
-    ]
+    ],
+    "link": "https://link.springer.com/article/10.1007/s10462-024-10721-6"
   },
   {
     "id": "P008",
-    "title": "Blockchain Technology: Security and Scalability",
+    "title": "Security and Scalability of Blockchain Document Storage Systems",
     "authors": [
       "Christopher Wilson",
       "Rachel Davis"
@@ -161,18 +161,18 @@
       "cryptography"
     ],
     "abstract": "We present an in-depth analysis of blockchain technology, focusing on security guarantees and scalability challenges. The paper examines various consensus mechanisms including Proof of Work, Proof of Stake, and Byzantine Fault Tolerance algorithms. We propose optimization techniques for improving transaction throughput and reducing latency while maintaining the security properties that make blockchain systems trustworthy.",
-    "citations_count": 92,
     "references": [
       "P005",
       "P011"
-    ]
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10714613"
   },
   {
     "id": "P009",
-    "title": "Cloud Computing: Resource Allocation and Scheduling",
+    "title": "Resource allocation and scheduling in cloud computing",
     "authors": [
-      "Steven Moore",
-      "Nicole White"
+      "Eman Elghoneimy",
+      "Hussein Alnuweiri"
     ],
     "year": 2022,
     "keywords": [
@@ -181,19 +181,19 @@
       "scheduling algorithms",
       "virtualization"
     ],
-    "abstract": "This research addresses resource allocation and task scheduling problems in cloud computing environments. We develop adaptive algorithms that optimize resource utilization while meeting quality of service requirements. Our approach considers heterogeneous workloads, dynamic resource availability, and energy efficiency constraints. Experimental results from simulations and real cloud deployments demonstrate significant improvements in system throughput and cost efficiency.",
-    "citations_count": 74,
+    "abstract": "Cloud computing is a platform that hosts applications and services for businesses and users to accesses computing as a service. In this paper, we identify two scheduling and resource allocation problems in cloud computing. We describe Hadoop MapReduce and its schedulers, and present recent research efforts in this area including alternative schedulers and enhancements to existing schedulers. The second scheduling problem is the provisioning of virtual machines to resources in the cloud.",
     "references": [
       "P002",
       "P005"
-    ]
+    ],
+    "link": "https://ieeexplore.ieee.org/document/6167434"
   },
   {
     "id": "P010",
     "title": "Neural Architecture Search: Automating Deep Learning Model Design",
     "authors": [
-      "Brian Jackson",
-      "Laura Thompson"
+      "Iyanu Samuel Ayebo",
+      " Emma Olatunde"
     ],
     "year": 2021,
     "keywords": [
@@ -202,20 +202,20 @@
       "deep learning",
       "optimization"
     ],
-    "abstract": "We explore automated methods for discovering optimal neural network architectures. The paper presents novel search strategies based on reinforcement learning, evolutionary algorithms, and gradient-based optimization. Our approach reduces the computational cost of architecture search while maintaining or improving model performance. We demonstrate the effectiveness of our method on image classification and natural language processing benchmarks.",
-    "citations_count": 134,
+    "abstract": "Neural Architecture Search (NAS) is a rapidly growing research area aimed at automating the design of deep learning models. Traditionally, designing neural networks is a time-consuming process that requires expertise and substantial trial and error. However, the advent of NAS has opened up possibilities to systematically search for the optimal architecture for a given task. By leveraging machine learning techniques, NAS automates the discovery of architectures that outperform manually designed models. This article delves into the concept of NAS, its components, and various methods utilized in the search process. Furthermore, it explores the challenges and advancements in this field, such as the exploration-exploitation tradeoff, computational efficiency, and transferability across different domains. We also analyze the impact of NAS on several applications, including image classification, natural language processing, and reinforcement learning. The article concludes with a discussion on the future of NAS, including the integration of NAS with other fields like meta-learning, and the potential to make deep learning more accessible and efficient for a broader range of users.",
     "references": [
       "P001",
       "P003",
       "P007"
-    ]
+    ],
+    "link": "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.researchgate.net/publication/390131112_Neural_Architecture_Search_Automating_Deep_Learning_Model_Design&ved=2ahUKEwit9q2-hpmRAxWXVmwGHWdrBc8QFnoECBgQAQ&usg=AOvVaw1iD8RzNFyzswFBJ_iJSpPm"
   },
   {
     "id": "P011",
-    "title": "NoSQL Databases: Design Principles and Use Cases",
+    "title": "SQL and NoSQL Object-Database Mapping Using Property Graphs in Relational Cases ",
     "authors": [
-      "Patricia Harris",
-      "Mark Johnson"
+      "Billy Montolalu",
+      "Daniel Siahaan"
     ],
     "year": 2019,
     "keywords": [
@@ -225,10 +225,10 @@
       "scalability"
     ],
     "abstract": "This paper examines the design principles underlying NoSQL database systems and their appropriate use cases. We compare document stores, key-value stores, column-family databases, and graph databases, analyzing their strengths and limitations. The study includes performance evaluations and guidelines for selecting the appropriate database technology based on application requirements, data characteristics, and scalability needs.",
-    "citations_count": 98,
     "references": [
       "P004"
-    ]
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10776567"
   },
   {
     "id": "P012",
@@ -245,17 +245,17 @@
       "algorithms"
     ],
     "abstract": "We investigate parallel computing paradigms and their application to scientific problems. The research covers shared-memory and distributed-memory architectures, discussing programming models including OpenMP, MPI, and CUDA. We present case studies from computational physics, bioinformatics, and climate modeling, demonstrating how parallel algorithms can achieve significant speedups on modern supercomputing systems.",
-    "citations_count": 81,
     "references": [
       "P002"
-    ]
+    ],
+    "link": "https://scholar.google.com/scholar?q=Parallel+Computing+Paradigms+for+Scientific+Applications"
   },
   {
     "id": "P013",
-    "title": "Data Mining Techniques for Pattern Discovery",
+    "title": "Pattern Discovery using Data Mining Techniques",
     "authors": [
-      "George Wilson",
-      "Michelle Lee"
+      "Sohami Raut ",
+      "Dr. Swapna Borde"
     ],
     "year": 2019,
     "keywords": [
@@ -264,18 +264,18 @@
       "machine learning",
       "clustering"
     ],
-    "abstract": "This comprehensive survey explores data mining techniques for discovering patterns in large datasets. We review classification, clustering, association rule mining, and anomaly detection algorithms. The paper includes comparative studies of different approaches, discussing their computational complexity, accuracy, and applicability to various domains including e-commerce, healthcare, and financial services.",
-    "citations_count": 112,
+    "abstract": "This application explains that for mining frequent itemsets from the dataset .In this,the report focus on data preparation, python implementation and result analysis of the FP Growth algorithm. Market Basket Analysis is an very important part of the system in the despence organization to determine the placement of goods, designing sales for different types of customers.for improving customer satisfaction and the profit of the supermarkets as well.Mining frequent item sets The issues for aleading supermarket are negotiated here using frequent itemset mining.The project uses files as a database. in this, the itemsets and transactions of items are kept in a matrix format which are representing in the form of rows as list of items and columns as transactions.The frequent item sets are mined from the database using the FP Growth algorithm and then the association rules are generated. The project is beneficial for supermarket managers as well as small marts owner to determine the relationship between the items that are purchased by their customers",
     "references": [
       "P004"
-    ]
+    ],
+    "link": "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.ijert.org/pattern-discovery-using-data-mining-techniques&ved=2ahUKEwjE_a3eiJmRAxWW8DgGHSIiB-EQFnoECDAQAQ&usg=AOvVaw22dD0vmit9M_hYPftFjdm9"
   },
   {
     "id": "P014",
-    "title": "Federated Learning: Privacy-Preserving Machine Learning",
+    "title": "Privacy-Preserving Machine Learning Using Federated Learning and Secure Aggregation",
     "authors": [
-      "Andrew Clark",
-      "Rebecca Brown"
+      "Dragos Lia",
+      "Mihai Togan"
     ],
     "year": 2022,
     "keywords": [
@@ -284,16 +284,16 @@
       "machine learning",
       "distributed systems"
     ],
-    "abstract": "We present federated learning approaches that enable collaborative machine learning while preserving data privacy. The paper discusses decentralized training algorithms, secure aggregation protocols, and differential privacy techniques. Our framework allows multiple parties to jointly train models without sharing raw data, addressing privacy concerns in sensitive applications such as healthcare and finance.",
-    "citations_count": 187,
+    "abstract": "Federated learning is a subfield of machine learning that allows training models on a large, decentralized corpus of data residing on edge devices like smartphones. Instead of sharing data, users collaboratively train a model by only sending weight updates to a server. By leveraging secure multiparty computation, it can be ensured that the server cannot inspect any individual user's update",
     "references": [
       "P001",
       "P005"
-    ]
+    ],
+    "link": "https://ieeexplore.ieee.org/document/9223127/"
   },
   {
     "id": "P015",
-    "title": "Edge Computing: Bringing Computation Closer to Data Sources",
+    "title": "dge Computing in Data Science: Revolutionizing Real-Time Analytics",
     "authors": [
       "William Turner",
       "Elizabeth Davis"
@@ -305,11 +305,11 @@
       "distributed computing",
       "latency optimization"
     ],
-    "abstract": "This research investigates edge computing architectures that process data near its source rather than in centralized cloud data centers. We analyze the benefits of edge computing for latency-sensitive applications including IoT systems, autonomous vehicles, and real-time video analytics. The paper proposes resource management strategies and task offloading algorithms that optimize the trade-off between computational efficiency and network overhead.",
-    "citations_count": 103,
+    "abstract": "Edge Computing represents a paradigm shift in data processing, bringing computational power closer to the source of data generation. This paper explores the transformative role of edge computing in data science, particularly its impact on real-time analytics. In an era dominated by the Internet of Things (IoT) and massive data generation, edge computing offers an efficient alternative to traditional, centralized cloud computing by processing data locally, thereby reducing latency and bandwidth usag",
     "references": [
       "P005",
       "P009"
-    ]
+    ],
+    "link": "https://www.ijfans.org/uploads/paper/d4b106351bdca2768f4ae66a07782e9a.pdf"
   }
 ]

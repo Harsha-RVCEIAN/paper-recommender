@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, send_from_directory, abort
 import json, os
 from flask_cors import CORS
 from html import escape
+from math import log
+from urllib.parse import urlparse
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='/')
 CORS(app)
@@ -10,18 +12,69 @@ DATA_PATH = os.path.join(os.path.dirname(__file__), 'papers.json')
 with open(DATA_PATH, 'r', encoding='utf-8') as f:
     PAPERS = json.load(f)
 
-# index by id for quick lookups
-PAPER_BY_ID = { p.get('id'): p for p in PAPERS if p.get('id') }
+# helper: ensure string looks like an absolute http(s) url, otherwise normalize
+def normalize_url(u):
+    if not u or not isinstance(u, str):
+        return None
+    u = u.strip()
+    if not u:
+        return None
+    # simple heuristic: if it already starts with http(s) keep it
+    if u.startswith('http://') or u.startswith('https://'):
+        return u
+    # if it looks like a domain or path, add https://
+    # but reject obviously invalid fragments
+    parsed = urlparse(u)
+    if parsed.scheme and parsed.netloc:
+        return u
+    # If string contains a dot and no spaces, assume a domain and prefix https
+    if '.' in u and ' ' not in u:
+        return 'https://' + u
+    return None
 
-# ensure references and abstracts exist and generate placeholder link if missing
+# index by id for quick lookups (we'll rebuild after normalizing)
+PAPER_BY_ID = {}
+
+# populate PAPER_BY_ID, ensure safe 'link' detection and other defaults
 for p in PAPERS:
+    # ensure list/string defaults
     if 'references' not in p or p['references'] is None:
         p['references'] = []
     if 'abstract' not in p or p['abstract'] is None:
         p['abstract'] = ""
-    if 'link' not in p or not p['link']:
-        p['link'] = f"https://example.com/papers/{p.get('id','unknown')}"
-    PAPER_BY_ID[p.get('id')] = p
+
+    # 1) prefer explicit link-like fields
+    candidate = None
+    for field in ('link', 'url', 'pdf', 'paper_url', 'source_url', 'website'):
+        v = p.get(field)
+        if v and isinstance(v, str) and v.strip():
+            candidate = v.strip()
+            break
+
+    # 2) try DOI
+    if not candidate:
+        doi = p.get('doi') or p.get('DOI') or p.get('paper_doi')
+        if doi and isinstance(doi, str) and doi.strip():
+            candidate = 'https://doi.org/' + doi.strip()
+
+    # 3) try arXiv id
+    if not candidate:
+        arx = p.get('arxiv') or p.get('arxiv_id') or p.get('arXiv') or p.get('arxivId')
+        if arx and isinstance(arx, str) and arx.strip():
+            aid = arx.strip()
+            # choose the abstract page as default
+            candidate = f'https://arxiv.org/abs/{aid}'
+
+    # normalize candidate url and only keep it if valid
+    normalized = normalize_url(candidate) if candidate else None
+
+    # IMPORTANT: if no valid normalized url, leave p['link'] as empty string or None
+    p['link'] = normalized or None
+
+    # add to index
+    pid = p.get('id')
+    if pid:
+        PAPER_BY_ID[pid] = p
 
 def compute_citation_counts():
     counts = { pid: 0 for pid in PAPER_BY_ID.keys() }
@@ -40,46 +93,36 @@ def _paper_with_dynamic_cites(p, citation_map):
 def search():
     """
     Search endpoint with weighted + normalized scoring.
-    Authors are NOT used for matching/scoring (excluded per request).
-    Field weights:
-      title = 0.45
-      keywords = 0.35
-      abstract = 0.20
+    Authors excluded from matching.
+    Field weights: title=0.45, keywords=0.35, abstract=0.20
+    Citation score uses log-scaling normalized across matched candidates.
+    Final score = 0.5 * keyword_score + 0.5 * citation_score
     """
     q = (request.args.get('q') or '').strip()
     tokens = [t for t in q.lower().split() if t]
     if not tokens:
         return jsonify([])
 
-    # weights (authors excluded)
     w_title = 0.45
     w_keywords = 0.35
     w_abstract = 0.20
-    # ensure they sum to 1.0
     assert abs((w_title + w_keywords + w_abstract) - 1.0) < 1e-9
 
     citation_map = compute_citation_counts()
-    # compute max citations for normalization (if you later normalize)
-    max_cites = max(citation_map.values()) if citation_map else 0.0
 
-    results = []
-
+    candidates = []
     for p in PAPERS:
-        # prepare searchable fields (lowercased) — ***authors intentionally excluded***
         title_text = (p.get('title','') or '').lower()
         abstract_text = (p.get('abstract','') or '').lower()
-        keywords_list = p.get('keywords',[]) or []
-        keywords_text = ' '.join(keywords_list).lower()
+        keywords_list = p.get('keywords', []) or []
 
-        # compute weighted token matches
         total_token_score = 0.0
         for tok in tokens:
             tok = tok.strip()
             if not tok:
                 continue
-            in_title = (tok in title_text)
-            in_abstract = (tok in abstract_text)
-            # keywords: check token presence inside any single keyword
+            in_title = tok in title_text
+            in_abstract = tok in abstract_text
             in_keywords = any(tok in (kw or '').lower() for kw in keywords_list)
 
             token_score = 0.0
@@ -92,31 +135,49 @@ def search():
 
             total_token_score += token_score
 
-        # skip if no match
         if total_token_score <= 0:
             continue
 
-        # normalize keyword score: average token score (range 0..1)
         keyword_score = total_token_score / len(tokens)
-
-        # citation score normalized 0..1
-        citations = int(citation_map.get(p.get('id'), 0))
-        citation_score = (citations / max_cites) if max_cites > 0 else 0.0
-
-        # final combined score (0.5 weight each as before)
-        final_score = 0.5 * keyword_score + 0.5 * citation_score
+        raw_citations = int(citation_map.get(p.get('id'), 0))
 
         enriched = _paper_with_dynamic_cites(p, citation_map)
-        enriched['keyword_match_raw'] = round(total_token_score, 6)
-        enriched['keyword_score'] = round(keyword_score, 6)
-        enriched['citation_score'] = round(citation_score, 6)
-        enriched['score'] = round(final_score, 6)
+        enriched['_internal_keyword_score'] = keyword_score
+        enriched['_internal_raw_citations'] = raw_citations
 
-        results.append(enriched)
+        candidates.append(enriched)
 
-    # Sort by score descending
-    results.sort(key=lambda x: x['score'], reverse=True)
-    return jsonify(results)
+    if not candidates:
+        return jsonify([])
+
+    # log-scale citation normalization across candidates
+    log_values = [log(1 + c['_internal_raw_citations']) for c in candidates]
+    max_log_val = max(log_values) if log_values else 0.0
+
+    if max_log_val <= 0:
+        for c in candidates:
+            citation_score = 0.0
+            final_score = 0.5 * c['_internal_keyword_score'] + 0.5 * citation_score
+            c['keyword_score'] = round(float(c['_internal_keyword_score']), 6)
+            c['citation_score'] = round(float(citation_score), 6)
+            c['score'] = round(float(final_score), 6)
+            c.pop('_internal_keyword_score', None)
+            c.pop('_internal_raw_citations', None)
+        candidates.sort(key=lambda x: x['score'], reverse=True)
+        return jsonify(candidates)
+
+    for c in candidates:
+        raw = c['_internal_raw_citations']
+        log_scaled = log(1 + raw) / max_log_val
+        final_score = 0.5 * c['_internal_keyword_score'] + 0.5 * log_scaled
+        c['keyword_score'] = round(float(c['_internal_keyword_score']), 6)
+        c['citation_score'] = round(float(log_scaled), 6)
+        c['score'] = round(float(final_score), 6)
+        c.pop('_internal_keyword_score', None)
+        c.pop('_internal_raw_citations', None)
+
+    candidates.sort(key=lambda x: x['score'], reverse=True)
+    return jsonify(candidates)
 
 @app.route('/api/all')
 def all_papers():
@@ -125,19 +186,10 @@ def all_papers():
 
 @app.route('/api/keywords')
 def api_keywords():
-    """
-    Return compact list of suggestion terms built from:
-      - paper keywords
-      - short title snippets (first 6 words)
-      - individual title tokens
-    Authors are intentionally excluded from suggestion terms.
-    Each item: {"term": <string>, "citations": <int>}
-    """
     citation_map = compute_citation_counts()
     term_map = {}
     for p in PAPERS:
         cite = int(citation_map.get(p.get('id'), 0))
-        # keywords
         for kw in p.get('keywords', []) or []:
             t = (kw or '').strip()
             if not t:
@@ -150,7 +202,6 @@ def api_keywords():
             else:
                 term_map[k] = {"term": t, "citations": cite}
 
-        # short title (first 6 words)
         title = (p.get('title') or '').strip()
         if title:
             short = ' '.join(title.split()[:6])
@@ -162,7 +213,6 @@ def api_keywords():
             else:
                 term_map[k] = {"term": short, "citations": cite}
 
-            # individual title words (single tokens)
             for tk in title.split():
                 tk = tk.strip()
                 if not tk:
@@ -184,13 +234,16 @@ def serve_paper_page(paper_id):
     p = PAPER_BY_ID.get(paper_id)
     if not p:
         return abort(404)
+
     citation_map = compute_citation_counts()
     cites = int(citation_map.get(paper_id, 0))
     title = escape(p.get('title') or 'Untitled')
     authors = escape(', '.join(p.get('authors', [])))
     year = escape(str(p.get('year') or ''))
     abstract = escape(p.get('abstract') or '')
-    link = p.get('link') or ''
+    link = p.get('link') or None
+
+    # Render references
     refs = []
     for rid in p.get('references', []) or []:
         rp = PAPER_BY_ID.get(rid)
@@ -200,10 +253,16 @@ def serve_paper_page(paper_id):
         else:
             refs.append(f'<li>{escape(rid)} (not in dataset)</li>')
     refs_html = '<ul>' + ''.join(refs) + '</ul>' if refs else '<p><em>No references</em></p>'
+
+    # Only show external Open button if link is valid (non-empty)
     link_button = ''
     if link:
         esc_link = escape(link)
         link_button = f'<p><a href="{esc_link}" target="_blank" rel="noopener" style="display:inline-block;padding:10px 14px;background:#6c63ff;color:#fff;border-radius:8px;text-decoration:none;">Open paper (external)</a></p>'
+    else:
+        # optionally show a small hint that no external link is available
+        link_button = '<p class="small" style="color:#6b7280;"><em>No external link available for this paper.</em></p>'
+
     html = f"""
     <!doctype html>
     <html>

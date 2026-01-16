@@ -5,7 +5,14 @@ from html import escape
 from math import log
 from urllib.parse import urlparse
 
-app = Flask(__name__, static_folder='../frontend', static_url_path='/')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+
+app = Flask(
+    __name__,
+    static_folder=FRONTEND_DIR,
+    static_url_path="/"
+)
 CORS(app)
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'papers.json')

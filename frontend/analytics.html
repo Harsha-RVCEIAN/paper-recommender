@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ScholarSearch — Analytics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="topbar">
+    <div class="brand">🔎 <span>ScholarSearch</span></div>
+
+    <nav class="nav" id="main-nav" aria-label="Primary navigation">
+      <a class="navlink" href="index.html">Search</a>
+      <a class="navlink" href="results.html">Results</a>
+      <a class="navlink" href="analytics.html">Analytics</a>
+    </nav>
+
+    <!-- ===== Researcher Mode Toggle (system-wide) ===== -->
+    <div class="mode-toggle" aria-label="Search mode">
+      <button id="mode-beginner" class="mode-btn">Beginner</button>
+      <button id="mode-researcher" class="mode-btn">Researcher</button>
+    </div>
+  </header>
+
+  <!-- ================= Main ================= -->
+  <main class="hero" style="text-align:left; max-width:1000px; margin:28px auto;">
+
+    <h1>Research Analytics</h1>
+    <p class="subtitle">
+      Understanding citation influence and topic importance across the dataset
+    </p>
+
+    <!-- ================= Overview Cards ================= -->
+    <section class="overview-grid" style="margin-bottom:24px;">
+
+      <!-- Overview -->
+      <div class="card">
+        <h3>Dataset Overview</h3>
+        <div style="padding-top:12px;">
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+            <div>Total Papers</div>
+            <div id="stat-total-papers" class="small">—</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f1f5f9;">
+            <div>Unique Keywords</div>
+            <div id="stat-unique-keywords" class="small">—</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;">
+            <div>Total References</div>
+            <div id="stat-total-references" class="small">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top cited -->
+      <div class="card">
+        <h3>Top Cited Papers</h3>
+        <p class="small" style="margin-bottom:8px;">
+          Papers ranked by incoming references from the dataset
+        </p>
+        <div id="top-cited-list" style="margin-top:10px;"></div>
+      </div>
+
+      <!-- Keywords -->
+      <div class="card">
+        <h3>Popular Keywords</h3>
+        <p class="small" style="margin-bottom:8px;">
+          Keywords appearing across multiple high-impact papers
+        </p>
+        <div id="popular-keywords-list" style="margin-top:10px;"></div>
+      </div>
+
+    </section>
+
+    <!-- ================= Citation Influence ================= -->
+    <section style="margin-top:12px;">
+      <div class="card" id="extra-analytics">
+        <h3>Citation Influence</h3>
+        <p class="small">
+          This view highlights which research topics dominate by citation impact,
+          not by volume. Fewer papers can still matter more.
+        </p>
+        <!-- Filled dynamically by analytics.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= Nav Active Highlight ================= -->
+  <script>
+    (function () {
+      try {
+        const current = window.location.pathname.split('/').pop() || 'analytics.html';
+        document.querySelectorAll('#main-nav .navlink').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === current);
+        });
+      } catch (e) {
+        console.warn('Navigation highlight failed', e);
+      }
+    })();
+  </script>
+
+  <!-- ================= Scripts ================= -->
+  <script src="analytics.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

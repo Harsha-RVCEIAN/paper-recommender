@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ScholarSearch — Results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="topbar">
+    <div class="brand">🔎 <span>ScholarSearch</span></div>
+
+    <nav class="nav" id="main-nav">
+      <a class="navlink" href="index.html">Search</a>
+      <a class="navlink" href="results.html">Results</a>
+      <a class="navlink" href="analytics.html">Analytics</a>
+    </nav>
+
+    <!-- ===== Researcher Mode Toggle (CRITICAL) ===== -->
+    <div class="mode-toggle" aria-label="Search mode">
+      <button id="mode-beginner" class="mode-btn">Beginner</button>
+      <button id="mode-researcher" class="mode-btn">Researcher</button>
+    </div>
+  </header>
+
+  <!-- ================= Main ================= -->
+  <main class="hero" style="text-align:left; max-width:1000px; margin:28px auto;">
+
+    <h2 id="results-title">Search results</h2>
+    <p id="results-sub" class="small" style="margin-bottom:10px;"></p>
+
+    <!-- ================= Query Interpretation Banner ================= -->
+    <!-- Filled dynamically by results.js -->
+    <section id="query-insight" class="query-insight"></section>
+
+    <!-- ================= Results ================= -->
+    <!-- Injected by results.js -->
+    <div id="results" class="results"></div>
+
+  </main>
+
+  <!-- ================= Nav Active Highlight ================= -->
+  <script>
+    (function () {
+      try {
+        const current = window.location.pathname.split('/').pop() || 'results.html';
+        document.querySelectorAll('#main-nav .navlink').forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === current) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      } catch (e) {
+        console.warn('Nav highlighting failed', e);
+      }
+    })();
+  </script>
+
+  <!-- ================= Scripts ================= -->
+  <!-- results.js handles fetching + rendering -->
+  <script src="results.js"></script>
+
+  <!-- app.js provides shared helpers -->
+  <script src="app.js"></script>
+
+</body>
+</html>

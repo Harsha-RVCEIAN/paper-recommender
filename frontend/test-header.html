@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Header</title>
+  <style>
+    :root{
+      --muted:#6b7280;
+      --accent1:#6c63ff;
+      --accent2:#8b5cf6;
+    }
+
+    body{margin:0;background:#f7fafc}
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 28px;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(6px);
+      border-bottom-left-radius:12px;
+      border-bottom-right-radius:12px;
+      box-shadow:0 6px 18px rgba(12,18,35,0.06);
+      position:relative;
+      z-index:1000;
+    }
+
+    .brand{
+      font-weight:700;
+      color:var(--accent1);
+      font-size:20px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .nav{display:flex;gap:18px}
+
+    .navlink{
+      color:var(--muted);
+      padding:8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .navlink:hover,
+    .navlink.active{
+      background:rgba(107,114,128,0.06);
+      color:var(--accent2);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">🔎 <span>ScholarSearch</span></div>
+    <nav class="nav">
+      <a class="navlink active" href="#">Search</a>
+      <a class="navlink" href="#">Results</a>
+      <a class="navlink" href="#">Analytics</a>
+    </nav>
+  </header>
+</body>
+</html>

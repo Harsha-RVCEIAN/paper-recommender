@@ -1,0 +1,316 @@
+:root{
+  --bg:#eef3fb;
+  --card:#ffffff;
+  --accent1:#6c63ff;
+  --accent2:#8b5cf6;
+  --muted:#6b7280;
+  --max-width:1000px;
+}
+
+/* ================= Base ================= */
+*{
+  box-sizing:border-box;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--bg),#f7fafc);
+  min-height:100vh;
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* Ambient depth */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(720px 380px at 20% 8%, rgba(99,102,241,0.12), transparent 60%),
+    radial-gradient(620px 360px at 82% 18%, rgba(139,92,246,0.10), transparent 60%);
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* ================= Topbar ================= */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 28px;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(8px);
+  border-radius:0 0 14px 14px;
+  box-shadow:0 10px 30px rgba(12,18,35,.08);
+  z-index:1000;
+}
+.brand{
+  font-weight:800;
+  color:var(--accent1);
+  font-size:20px;
+  display:flex;
+  gap:8px;
+}
+
+/* ================= Nav ================= */
+.nav{display:flex;gap:18px}
+.navlink{
+  text-decoration:none;
+  color:var(--muted);
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+}
+.navlink:hover,
+.navlink.active{
+  background:rgba(107,114,128,.08);
+  color:var(--accent2);
+}
+
+/* ================= Mode Toggle ================= */
+.mode-toggle{display:flex;gap:8px}
+.mode-btn{
+  padding:6px 12px;
+  border-radius:8px;
+  border:1px solid #e6e9ef;
+  background:#fff;
+  font-size:13px;
+  font-weight:700;
+}
+.mode-btn.active{
+  background:#eef2ff;
+  color:var(--accent2);
+  border-color:#c7d2fe;
+}
+
+/* ================= Hero ================= */
+.hero{
+  max-width:var(--max-width);
+  margin:48px auto;
+  padding:30px;
+  text-align:center;
+}
+
+h1{
+  font-size:40px;
+  margin:8px 0 6px;
+  color:var(--accent2);
+}
+.subtitle{
+  font-size:16px;
+  color:var(--muted);
+  opacity:.85;
+  margin-bottom:22px;
+}
+
+/* ================= SEARCH (PRIMARY) ================= */
+.search-card{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  padding:22px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:
+    0 40px 80px rgba(99,102,241,0.28),
+    0 0 0 1px rgba(99,102,241,0.25);
+  transform:scale(1.06);
+  margin-bottom:12px;
+  position:relative;
+  z-index:50;
+}
+.search-card input{
+  width:680px;
+  max-width:75vw;
+  padding:18px;
+  font-size:17px;
+  border-radius:12px;
+  border:1px solid #e6e9ef;
+}
+.search-card button{
+  padding:14px 26px;
+  border-radius:12px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#fff;
+  font-weight:800;
+  border:none;
+}
+
+/* Prevent blocking autocomplete */
+#system-status{
+  margin-top:6px;
+  font-size:13px;
+  opacity:.8;
+  pointer-events:none;
+  position:relative;
+  z-index:1;
+}
+
+/* ================= Results ================= */
+.results{margin-top:12px;text-align:left}
+
+/* Result Card */
+.paper{
+  position:relative;
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f9faff 100%
+    );
+  padding:22px;
+  border-radius:16px;
+  margin-bottom:22px;
+
+  box-shadow:
+    0 12px 30px rgba(99,102,241,0.10),
+    0 0 0 1px rgba(99,102,241,0.08);
+
+  transition:.25s;
+}
+
+.paper:nth-child(1){
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f4f6ff 100%
+    );
+
+  box-shadow:
+    0 30px 70px rgba(99,102,241,0.25),
+    0 0 0 1px rgba(99,102,241,0.25);
+
+  border-left:6px solid #74f163;
+}
+
+.paper:nth-child(n+5){opacity:.75}
+.paper:hover{
+  transform:translateY(-4px);
+}
+
+/* Rank */
+.rank-badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  font-size:12px;
+  font-weight:800;
+  padding:4px 8px;
+  background:#eef2ff;
+  color:var(--accent2);
+  border-radius:8px;
+}
+
+/* Title (FIXED) */
+.title{
+  font-weight:900;
+  font-size:19px;
+  line-height:1.32;
+  margin-bottom:4px;
+}
+
+/* Meta */
+.meta{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+/* ================= SCORE (SIMPLIFIED) ================= */
+.score-wrap{
+  margin:12px 0 16px;
+}
+.score-bar{
+  height:8px;
+  background:#eef2ff;
+  border-radius:999px;
+  overflow:hidden;
+}
+.score-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  animation:fillBar .9s ease-out forwards;
+}
+@keyframes fillBar{from{width:0}}
+
+/* Hide breakdown unless researcher */
+.score-breakdown{display:none}
+body[data-mode="researcher"] .score-breakdown{
+  display:block;
+  margin-top:12px;
+}
+
+/* ================= Abstract ================= */
+.abstract{
+  font-size:14px;
+  color:#374151;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+body[data-mode="beginner"] .abstract{-webkit-line-clamp:3;line-clamp:3}
+body[data-mode="researcher"] .abstract{-webkit-line-clamp:1;line-clamp:1}
+
+/* Expand */
+.expand-abstract{
+  font-size:12px;
+  color:var(--accent2);
+  margin-top:4px;
+  opacity:0;
+}
+.paper:hover .expand-abstract{opacity:1}
+
+
+/* ================= Query Interpretation ================= */
+.query-insight{
+  margin:28px 0 44px;   /* ⬅️ BIGGER bottom gap */
+  position:relative;
+}
+
+.query-insight::after{
+  content:"";
+  display:block;
+  height:1px;
+  margin-top:28px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(99,102,241,0.25),
+    transparent
+  );
+}
+
+
+/* ================= Analysis Box ================= */
+.why-box{
+  margin-top:16px;
+  padding:14px;
+  background:#f8fafc;
+  border:1px solid #e6e9ef;
+  border-radius:10px;
+  font-size:13px;
+}
+
+/* ================= References (Muted) ================= */
+.references{
+  margin-top:12px;
+}
+.ref-btn{
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:6px;
+  border:1px solid #e5e7eb;
+  background:#f9fafb;
+  color:#374151;
+}
+
+/* ================= Responsive ================= */
+@media (max-width:720px){
+  h1{font-size:32px}
+  .search-card{transform:scale(1)}
+  :root{--max-width:92vw}
+}

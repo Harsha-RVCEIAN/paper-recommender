@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ScholarSearch — Search</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="topbar">
+    <div class="brand">🔎 <span>ScholarSearch</span></div>
+
+    <nav class="nav" id="main-nav" aria-label="Primary navigation">
+      <a class="navlink" href="index.html">Search</a>
+      <a class="navlink" href="results.html">Results</a>
+      <a class="navlink" href="analytics.html">Analytics</a>
+    </nav>
+
+    <!-- ===== Researcher Mode Toggle ===== -->
+    <div class="mode-toggle" aria-label="Search mode">
+      <button id="mode-beginner" class="mode-btn">Beginner</button>
+      <button id="mode-researcher" class="mode-btn">Researcher</button>
+    </div>
+  </header>
+
+  <!-- ================= Main ================= -->
+  <main class="hero">
+
+    <!-- CONTEXT, NOT HERO -->
+    <h1>Citation-aware research search</h1>
+
+    <!-- Subtitle reacts to mode -->
+    <p class="subtitle" id="hero-subtitle"></p>
+
+    <!-- ================= SEARCH = TRUE HERO ================= -->
+    <div class="search-card" role="search" aria-label="Research search">
+      <input
+        id="query"
+        type="text"
+        placeholder="Search by keyword (e.g., machine learning, transformers)…"
+        autocomplete="off"
+        aria-label="Search research papers"
+      />
+      <button id="searchBtn" type="button">
+        Search Papers
+      </button>
+    </div>
+
+    <!-- ================= System Status Strip ================= -->
+    <div class="centercenter small" id="system-status" style="margin-top:14px;">
+      <strong>System status:</strong>
+      Dataset indexed &nbsp;•&nbsp;
+      Citation graph enabled &nbsp;•&nbsp;
+      Deterministic ranking active
+    </div>
+
+    <!-- ================= Optional Inline Results ================= -->
+    <!-- kept for compatibility -->
+    <section id="results" class="results"></section>
+
+  </main>
+
+  <!-- ================= Nav Active Highlight ================= -->
+  <script>
+    (function () {
+      try {
+        const path = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('#main-nav .navlink').forEach(link => {
+          const href = link.getAttribute('href');
+          if (
+            href === path ||
+            (href === 'index.html' && (path === '' || path === 'index.html'))
+          ) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- ================= Mode → Live UI Reaction ================= -->
+  <script>
+    (function () {
+      const subtitle = document.getElementById('hero-subtitle');
+      const btnBeginner = document.getElementById('mode-beginner');
+      const btnResearcher = document.getElementById('mode-researcher');
+
+      function updateSubtitle(mode) {
+        if (!subtitle) return;
+        subtitle.innerText =
+          mode === 'researcher'
+            ? 'Deterministic ranking using citation influence and reference overlap.'
+            : 'Ranked by query relevance and citations — easy to explore.';
+      }
+
+      // initial state
+      const savedMode = localStorage.getItem('researcher_mode') || 'beginner';
+      updateSubtitle(savedMode);
+
+      // live reaction
+      btnBeginner?.addEventListener('click', () => updateSubtitle('beginner'));
+      btnResearcher?.addEventListener('click', () => updateSubtitle('researcher'));
+    })();
+  </script>
+
+  <!-- ================= Scripts ================= -->
+  <script src="app.js"></script>
+
+</body>
+</html>

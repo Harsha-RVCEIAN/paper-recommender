@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ScholarSearch — Search</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- ================= Header ================= -->
   <header class="topbar">
-    <div class="brand">🔎 <span>ScholarSearch</span></div>
+    <div class="brand"><span>ScholarSearch</span></div>
 
     <nav class="nav" id="main-nav" aria-label="Primary navigation">
       <a class="navlink" href="index.html">Search</a>
@@ -29,20 +31,15 @@
   <main class="hero">
 
     <!-- CONTEXT, NOT HERO -->
-    <h1>Citation-aware research search</h1>
+    <h1>Keyword Utilized Research Paper Recommender</h1>
 
     <!-- Subtitle reacts to mode -->
     <p class="subtitle" id="hero-subtitle"></p>
 
     <!-- ================= SEARCH = TRUE HERO ================= -->
     <div class="search-card" role="search" aria-label="Research search">
-      <input
-        id="query"
-        type="text"
-        placeholder="Search by keyword (e.g., machine learning, transformers)…"
-        autocomplete="off"
-        aria-label="Search research papers"
-      />
+      <input id="query" type="text" placeholder="Search by keyword (e.g., machine learning, transformers)…"
+        autocomplete="off" aria-label="Search research papers" />
       <button id="searchBtn" type="button">
         Search Papers
       </button>
@@ -78,7 +75,7 @@
             link.classList.remove('active');
           }
         });
-      } catch (e) {}
+      } catch (e) { }
     })();
   </script>
 
@@ -93,7 +90,7 @@
         if (!subtitle) return;
         subtitle.innerText =
           mode === 'researcher'
-            ? 'Deterministic ranking using citation influence and reference overlap.'
+            ? 'Deterministic ranking using citation influence and keyword map.'
             : 'Ranked by query relevance and citations — easy to explore.';
       }
 
@@ -105,10 +102,18 @@
       btnBeginner?.addEventListener('click', () => updateSubtitle('beginner'));
       btnResearcher?.addEventListener('click', () => updateSubtitle('researcher'));
     })();
+
+    // Date display
+    (function () {
+      const d = new Date();
+      const el = document.getElementById('date-display');
+      if (el) el.innerText = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+    })();
   </script>
 
   <!-- ================= Scripts ================= -->
   <script src="app.js"></script>
 
 </body>
+
 </html>

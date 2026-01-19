@@ -4,11 +4,8 @@
 // FINAL 10/10 VERSION
 
 (function () {
-  const BASE_API = 'https://scholarsearch-backend.onrender.com';
-
-  const API_ALL = BASE_API + '/api/all';
-  const API_SEARCH = BASE_API + '/api/search';
-
+  const API_ALL = '/api/all';
+  const API_SEARCH = '/api/search';
 
   /* ---------------- Utilities ---------------- */
 
@@ -126,8 +123,8 @@
         div.className = 'paper';
 
         if (idx === 0) {
-          div.style.border = '1px solid #c7d2fe';
-          div.style.boxShadow = '0 22px 48px rgba(99,102,241,0.18)';
+          // CSS handles nth-child(1) styling
+          div.classList.add('featured-article');
         }
 
         const citations = Number(p.citations_count || p.citations || 0);
@@ -193,8 +190,7 @@
           </div>
 
           <div class="abstract">${escapeHtml(p.abstract || '')}</div>
-          <div class="expand-abstract"
-               onclick="window.open('${openLink}','_blank')">
+          <div class="expand-abstract">
             Expand abstract →
           </div>
 
@@ -227,8 +223,24 @@
         });
       });
 
+
+      /* Expand Abstract Logic - Event Delegation */
+      document.querySelectorAll('.paper').forEach(paperCard => {
+        const expandBtn = paperCard.querySelector('.expand-abstract');
+        const abstractEl = paperCard.querySelector('.abstract');
+        if (expandBtn && abstractEl) {
+          expandBtn.onclick = (e) => {
+            e.stopPropagation();
+            const isExpanded = abstractEl.classList.toggle('expanded');
+            expandBtn.innerText = isExpanded ? 'Show less' : 'Expand abstract →';
+          };
+        }
+      });
+
+
       document.querySelectorAll('.ref-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
           const rid = btn.dataset.rid;
           if (rid) window.open(`/paper/${encodeURIComponent(rid)}`, '_blank');
         });

@@ -5,9 +5,8 @@
 
 (async function () {
 
-  const BASE_API = 'https://scholarsearch-backend.onrender.com';
-  const API_ALL = BASE_API + '/api/all';
-  const API_SEARCH = BASE_API + '/api/search';
+  const API_ALL = '/api/all';
+  const API_SEARCH = '/api/search';
   const API_OVERVIEW = '/api/analytics/overview';
   const API_TOP_CITED = '/api/analytics/top-cited';
   const API_KEYWORDS = '/api/analytics/keywords';

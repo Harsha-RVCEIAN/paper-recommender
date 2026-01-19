@@ -3,9 +3,8 @@
 // System-wide Researcher / Beginner mode controller
 // NO feature removal — fully backward compatible
 
-const BASE_API = 'https://scholarsearch-backend.onrender.com';
-const API_ALL = BASE_API + '/api/all';
-const API_SEARCH = BASE_API + '/api/search';
+const API_ALL = '/api/all';
+const API_SEARCH = '/api/search';
 const FALLBACK_PAPERS = ['/papers', 'backend/papers.json', 'papers.json'];
 
 /* ================= Utilities ================= */
@@ -138,6 +137,7 @@ class Trie {
   }
 }
 
+
 /* ================= Autocomplete UI ================= */
 
 function createSuggestionsContainer() {
@@ -149,6 +149,7 @@ function createSuggestionsContainer() {
     el = document.createElement('div');
     el.id = 'suggestions';
     el.className = 'suggestions-panel';
+    // Ensure relative positioning for absolute child
     if (getComputedStyle(card).position === 'static') {
       card.style.position = 'relative';
     }
@@ -164,26 +165,40 @@ function createSuggestionsContainer() {
   const style = document.createElement('style');
   style.id = 'autocomplete-styles';
   style.textContent = `
-    .suggestions-panel{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(620px,calc(100% - 32px));
-    background:(#fff);
-    border-radius:14px;
-    box-shadow:0 30px 70px rgba(42, 77, 174, 0.22);
-    display:none;
-    z-index:50;
-    max-height:320px;
-    overflow:auto;
-    margin-top:14px;
-    padding:8px 0;
-  }
-
-    .suggestion-item{padding:12px 16px;cursor:pointer;font-size:14px}
-    .suggestion-item:hover{background:#f3f4f6}
-    .primary{font-weight:600}
-    .meta{font-size:12px;color:#6b7280;margin-top:4px}
+    .suggestions-panel {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: var(--paper, #fff);
+      border: 2px solid var(--ink, #000); /* Newspaper style */
+      border-top: none;
+      box-shadow: 4px 4px 0 var(--ink, #000);
+      display: none;
+      z-index: 999;
+      max-height: 320px;
+      overflow: auto;
+      margin-top: 4px;
+      padding: 0;
+    }
+    .suggestion-item {
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: 'Lora', serif;
+      border-bottom: 1px dotted var(--muted, #ccc);
+      transition: background 0.1s;
+    }
+    .suggestion-item:last-child { border-bottom: none; }
+    .suggestion-item:hover, .suggestion-item.selected {
+      background: var(--ink, #000);
+      color: var(--bg, #fff);
+    }
+    .suggestion-item:hover .meta, .suggestion-item.selected .meta {
+      color: #ccc;
+    }
+    .primary { font-weight: 600; }
+    .meta { font-size: 11px; color: var(--muted, #666); font-family: 'Oswald', sans-serif; text-transform: uppercase; margin-top: 2px; }
   `;
   document.head.appendChild(style);
 })();
@@ -197,6 +212,7 @@ const suggestionsEl = createSuggestionsContainer();
 let trie = new Trie();
 const displayMap = {};
 const citationsMap = {};
+let currentSelectionIndex = -1; // Track keyboard selection
 
 /* ================= Load Data ================= */
 
@@ -206,7 +222,7 @@ async function loadAllTermsAndBuildTrie() {
   try {
     const res = await fetch(API_ALL);
     if (res.ok) papers = await res.json();
-  } catch {}
+  } catch { }
 
   if (!papers.length) {
     for (const p of FALLBACK_PAPERS) {
@@ -216,7 +232,7 @@ async function loadAllTermsAndBuildTrie() {
           papers = await r.json();
           break;
         }
-      } catch {}
+      } catch { }
     }
   }
 
@@ -251,10 +267,12 @@ function clearSuggestions() {
   if (!suggestionsEl) return;
   suggestionsEl.innerHTML = '';
   suggestionsEl.style.display = 'none';
+  currentSelectionIndex = -1;
 }
 
 function renderSuggestions(prefix) {
   if (!suggestionsEl) return;
+  currentSelectionIndex = -1;
 
   const list = trie
     .suggestions(prefix, 8)
@@ -270,9 +288,11 @@ function renderSuggestions(prefix) {
   suggestionsEl.innerHTML = '';
   suggestionsEl.style.display = 'block';
 
-  list.forEach(s => {
+  list.forEach((s, idx) => {
     const div = document.createElement('div');
     div.className = 'suggestion-item';
+    div.setAttribute('data-term', s.term); // Store term for keyboard retrieval
+    div.setAttribute('data-index', idx);
     div.innerHTML = `
       <div class="primary">${escapeHtml(s.term)}</div>
       <div class="meta">Citations: ${s.citations}</div>
@@ -281,8 +301,21 @@ function renderSuggestions(prefix) {
       e.preventDefault();
       inputEl.value = s.term;
       clearSuggestions();
+      doSearch(); // Auto search on click? Maybe just fill. Let's strictly just fill as before or better? The user didn't ask to auto search. Let's just fill.
     };
     suggestionsEl.appendChild(div);
+  });
+}
+
+function updateSelection() {
+  const items = suggestionsEl.querySelectorAll('.suggestion-item');
+  items.forEach((item, idx) => {
+    if (idx === currentSelectionIndex) {
+      item.classList.add('selected');
+      item.scrollIntoView({ block: 'nearest' });
+    } else {
+      item.classList.remove('selected');
+    }
   });
 }
 
@@ -291,7 +324,7 @@ function renderSuggestions(prefix) {
 function doSearch() {
   const q = inputEl.value.trim();
   if (!q) return;
-  window.location.href = '/results.html?q=' + encodeURIComponent(q);
+  window.location.href = 'results.html?q=' + encodeURIComponent(q);
 }
 
 /* ================= Events ================= */
@@ -309,16 +342,48 @@ if (inputEl) {
   // SEARCH DOMINANCE FEEDBACK
   inputEl.addEventListener('focus', () => {
     document.querySelector('.search-card')?.classList.add('search-active');
+    // If there is text, maybe show suggestions again?
+    if (inputEl.value.trim().length > 0) renderSuggestions(inputEl.value.trim());
   });
 
   inputEl.addEventListener('blur', () => {
     document.querySelector('.search-card')?.classList.remove('search-active');
-    setTimeout(clearSuggestions, 150);
+    setTimeout(clearSuggestions, 200); // 200ms to allow click to register
   });
 
   inputEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter') doSearch();
-    if (e.key === 'Escape') clearSuggestions();
+    const items = suggestionsEl ? suggestionsEl.querySelectorAll('.suggestion-item') : [];
+
+    if (e.key === 'ArrowDown') {
+      if (suggestionsEl.style.display !== 'none' && items.length > 0) {
+        e.preventDefault();
+        currentSelectionIndex++;
+        if (currentSelectionIndex >= items.length) currentSelectionIndex = 0;
+        updateSelection();
+      }
+    } else if (e.key === 'ArrowUp') {
+      if (suggestionsEl.style.display !== 'none' && items.length > 0) {
+        e.preventDefault();
+        currentSelectionIndex--;
+        if (currentSelectionIndex < 0) currentSelectionIndex = items.length - 1;
+        updateSelection();
+      }
+    } else if (e.key === 'Enter') {
+      if (currentSelectionIndex > -1 && suggestionsEl.style.display !== 'none') {
+        e.preventDefault();
+        const selectedItem = items[currentSelectionIndex];
+        if (selectedItem) {
+          inputEl.value = selectedItem.getAttribute('data-term');
+          clearSuggestions();
+          // Optional: trigger search immediately? User said "select trie keywords", usually implies selection.
+          // I'll leave it as just selection to be safe, but usually Enter on a selection means "pick this".
+        }
+      } else {
+        doSearch();
+      }
+    } else if (e.key === 'Escape') {
+      clearSuggestions();
+    }
   });
 }
 

@@ -1,104 +1,99 @@
 # services/ranking.py
 """
-Ranking service
+Ranking Service
 ---------------
-Responsible for scoring and ordering candidate papers.
-Uses deterministic, explainable logic (no AI).
+Implements deterministic scoring using:
+1. TF-IDF Relevance (Keyword weighting using math/stats)
+2. Graph Centrality (PageRank from CitationGraph)
+3. Raw Impact (Log-scaled Citation Counts)
+
+Complexity:
+- Scoring: O(M * T) where M = candidates, T = query tokens.
+- Sorting: O(M log M).
 """
 
-from math import log
+import math
 
-
-def compute_citation_map(papers: list):
+def calculate_tfidf_score(paper, tokens, index_service):
     """
-    Compute citation count for each paper based on references.
-
-    Returns:
-        dict: {paper_id: citation_count}
+    Computes a weighted TF-IDF score for the paper.
+    - Title matches get higher TF weight.
+    - IDF ensures rare words contribute more to the rank than common words.
+    
+    Time Complexity: O(T * D) where T = tokens, D = doc size.
     """
-    citation_counts = {}
+    title_text = (paper.get("title") or "").lower()
+    abstract_text = (paper.get("abstract") or "").lower()
+    keywords = [k.lower() for k in paper.get("keywords") or []]
+    
+    total_score = 0.0
+    for t in tokens:
+        # 1. Term Frequency (TF) with field importance weights
+        tf = 0.0
+        if t in title_text: 
+            tf += 5.0 # Title is primary
+        if any(t in k for k in keywords): 
+            tf += 3.0 # Keywords are metadata
+        if t in abstract_text: 
+            tf += 1.0 # Abstract is context
+            
+        # 2. Inverse Document Frequency (IDF)
+        # Fetched from our precomputed Inverted Index stats
+        idf = index_service.get_idf(t)
+        
+        # TF-IDF calculation
+        total_score += (tf * idf)
+        
+    return total_score
 
-    # initialize counts
-    for p in papers:
-        pid = p.get("id")
-        if pid:
-            citation_counts[pid] = 0
-
-    # count references
-    for p in papers:
-        for ref in p.get("references", []) or []:
-            if ref in citation_counts:
-                citation_counts[ref] += 1
-
-    return citation_counts
-
-
-def normalize_citation_scores(candidates: list, citation_map: dict):
+def rank_papers(candidate_ids: set, index_service, graph_service, query: str):
     """
-    Apply log-normalized citation score to candidate papers.
-
-    Adds:
-        paper["citation_score"]
+    Ranks papers using a composite score based on IR and Graph Theory.
+    Final Score = TF-IDF + PageRank + log(Citations)
     """
-
-    # collect raw citation values
-    raw_values = []
-    for p in candidates:
-        pid = p.get("id")
-        raw_values.append(int(citation_map.get(pid, 0)))
-
-    if not raw_values:
-        return
-
-    # log-scale
-    log_values = [log(1 + v) for v in raw_values]
-    max_log = max(log_values)
-
-    # avoid division by zero
-    if max_log <= 0:
-        for p in candidates:
-            p["citation_score"] = 0.0
-        return
-
-    # normalize
-    for p in candidates:
-        raw = int(citation_map.get(p.get("id"), 0))
-        p["citation_score"] = round(log(1 + raw) / max_log, 6)
-
-
-def rank_papers(candidates: list, all_papers: list):
-    """
-    Rank candidate papers using keyword relevance + citation impact.
-
-    Inputs:
-        candidates  : output of search.search_papers()
-        all_papers  : full dataset (for citation graph)
-
-    Returns:
-        Sorted list of ranked papers
-    """
-
-    if not candidates:
+    if not candidate_ids:
         return []
 
-    # build citation graph from full dataset
-    citation_map = compute_citation_map(all_papers)
+    tokens = index_service.tokenize(query)
+    ranked_results = []
 
-    # compute citation_score for candidates
-    normalize_citation_scores(candidates, citation_map)
+    # Final Rank Component Weights (Tuning)
+    W_TFIDF = 1.0
+    W_PAGERANK = 15.0  # Graph-based authority is a strong signal
+    W_POPULARITY = 2.0 # Raw citation count is a minor signal
 
-    # final score weights
-    W_KEYWORD = 0.5
-    W_CITATION = 0.5
+    for pid in candidate_ids:
+        paper = index_service.get_paper(pid)
+        if not paper: continue
 
-    for p in candidates:
-        kw = float(p.get("keyword_score", 0.0))
-        cit = float(p.get("citation_score", 0.0))
-        final_score = (W_KEYWORD * kw) + (W_CITATION * cit)
-        p["score"] = round(final_score, 6)
-        p["citations_count"] = int(citation_map.get(p.get("id"), 0))
+        # 1. TF-IDF Calculation (Deterministic IR)
+        tfidf_score = calculate_tfidf_score(paper, tokens, index_service)
 
-    # sort by final score (descending)
-    candidates.sort(key=lambda x: x.get("score", 0.0), reverse=True)
+        # 2. PageRank (Search Engine Authority)
+        pagerank = graph_service.get_score(pid)
 
-    return candidates
+        # 3. Citation Popularity (Log-normalized)
+        citations = graph_service.get_citation_count(pid)
+        popularity_score = math.log10(1 + citations)
+
+        # Unified Composite Score
+        final_score = (tfidf_score * W_TFIDF) + (pagerank * W_PAGERANK) + (popularity_score * W_POPULARITY)
+
+        p_copy = paper.copy()
+        p_copy['score'] = round(final_score, 4)
+        p_copy['pagerank'] = round(pagerank, 6)
+        p_copy['citations_count'] = citations
+        
+        # Explanation for the frontend
+        p_copy['score_breakdown'] = {
+             'relevance': round(tfidf_score, 2),
+             'influence': round(pagerank * 100, 2),
+             'popularity': citations
+        }
+
+        ranked_results.append(p_copy)
+
+    # Sort Results by the calculated composite score
+    ranked_results.sort(key=lambda x: x['score'], reverse=True)
+
+    return ranked_results

@@ -130,10 +130,24 @@
         const citations = Number(p.citations_count || p.citations || 0);
         const openLink = p.link ? p.link : `/paper/${p.id}`;
 
-        const scoreOverall = typeof p.score === 'number' ? pct(p.score) : 0;
-        const scoreQuery = typeof p.keyword_score === 'number' ? pct(p.keyword_score) : 0;
-        const scoreCite = Math.min(100, citations * 8);
-        const scoreRefs = Math.min(100, (p.references || []).length * 20);
+        let scoreOverall, scoreQuery, scoreCite, scoreRefs;
+
+        if (p.score_breakdown) {
+          // New DSA Backend Logic
+          // Backend score is raw weighted sum. Normalize roughly to 0-100 for display.
+          // Max expected score is ~30 (Keyword ~15, PR ~10, CiteLog ~5).
+          scoreOverall = Math.min(100, (p.score || 0) * 3);
+
+          scoreQuery = Math.min(100, (p.score_breakdown.relevance || 0) * 5);
+          scoreCite = p.score_breakdown.influence || 0;
+          scoreRefs = Math.min(100, (p.references || []).length * 10);
+        } else {
+          // Fallback / Old Logic
+          scoreOverall = typeof p.score === 'number' ? pct(p.score) : 0;
+          scoreQuery = typeof p.keyword_score === 'number' ? pct(p.keyword_score) : 0;
+          scoreCite = Math.min(100, citations * 8);
+          scoreRefs = Math.min(100, (p.references || []).length * 20);
+        }
 
         const keywordsHTML = (p.keywords || []).map(k => `
           <span class="kpill"
@@ -155,7 +169,9 @@
         div.innerHTML = `
           <div class="rank-badge">#${idx + 1}</div>
 
-          <div class="title">${escapeHtml(p.title)}</div>
+          <div class="title">
+            <a href="/paper/${p.id}" style="color:inherit; text-decoration:none;">${escapeHtml(p.title)}</a>
+          </div>
           <div class="meta">
             ${p.year || ''} • ${citations} citations • Score ${scoreOverall}%
           </div>

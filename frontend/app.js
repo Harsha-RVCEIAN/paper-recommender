@@ -250,14 +250,18 @@ async function loadAllTermsAndBuildTrie() {
       citationsMap[l] = Math.max(citationsMap[l] || 0, cite);
     });
 
+    /* 
     if (p.title) {
-      p.title.split(/\s+/).forEach(tok => {
-        const l = tok.toLowerCase();
-        trie.insert(tok);
-        displayMap[l] = tok;
-        citationsMap[l] = Math.max(citationsMap[l] || 0, cite);
-      });
+       p.title.split(/\s+/).forEach(tok => {
+         const l = tok.toLowerCase();
+         if (l.length > 3) {
+           trie.insert(tok);
+           displayMap[l] = tok;
+           citationsMap[l] = Math.max(citationsMap[l] || 0, cite);
+         }
+       });
     }
+    */
   }
 }
 

@@ -5,10 +5,11 @@ import os
 
 # ---- internal modules ----
 from utils.loader import load_papers
-from services.search import search_papers
+# from services.search import search_papers # Deprecated
 from services.ranking import rank_papers
+from services.graph import CitationGraph
+from services.index import SearchIndex
 from services.analytics import (
-    compute_citation_map,
     get_overview_stats,
     get_top_cited_papers,
     get_keyword_statistics,
@@ -24,6 +25,19 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "papers.json")
 
 PAPERS, PAPER_BY_ID = load_papers(DATA_PATH)
 
+# ---- Initialize Advanced Structures (DSA Project Core) ----
+print("Initializing Citation Graph (PageRank)...")
+GRAPH = CitationGraph()
+GRAPH.build_graph(PAPERS)
+GRAPH.compute_pagerank(iterations=30)  # High precision
+print("Citation Graph built.")
+
+print("Initializing Inverted Index...")
+INDEX = SearchIndex()
+INDEX.build_index(PAPERS)
+print("Inverted Index built.")
+
+
 # ------------------------------------------------------------------
 # API ROUTES
 # ------------------------------------------------------------------
@@ -31,31 +45,31 @@ PAPERS, PAPER_BY_ID = load_papers(DATA_PATH)
 @app.route("/api/search")
 def api_search():
     """
-    Search pipeline:
-      1. keyword filtering (search service)
-      2. deterministic ranking (ranking service)
+    Search pipeline (Refactored for Advanced DSA):
+      1. INDEX: O(1) keyword lookup (Inverted Index)
+      2. RANKING: Composite Score (Graph Authority + Keywords)
     """
     query = (request.args.get("q") or "").strip()
     if not query:
         return jsonify([])
 
-    # step 1: keyword-based filtering
-    candidates = search_papers(PAPERS, query)
-
-    # step 2: ranking
-    ranked = rank_papers(candidates, PAPERS)
+    # step 1: O(1) retrieval using Inverted Index
+    candidate_ids = INDEX.search(query)
+    
+    # step 2: ranking using Graph Scores + TF-IDF logic
+    ranked = rank_papers(candidate_ids, INDEX, GRAPH, query)
 
     return jsonify(ranked)
 
 
 @app.route("/api/all")
 def api_all_papers():
-    """Return all papers with dynamic citation counts."""
-    citation_map = compute_citation_map(PAPERS)
+    """Return all papers with dynamic citation counts from Graph."""
     out = []
     for p in PAPERS:
+        pid = p.get("id")
         item = dict(p)
-        item["citations_count"] = int(citation_map.get(p.get("id"), 0))
+        item["citations_count"] = GRAPH.get_citation_count(pid)
         out.append(item)
     return jsonify(out)
 
@@ -68,13 +82,16 @@ def api_analytics_overview():
 
 @app.route("/api/analytics/top-cited")
 def api_analytics_top_cited():
-    citation_map = compute_citation_map(PAPERS)
+    # Pass graph citation counts instead of recomputing
+    # We can create a temporary map for the analytics function, 
+    # or refactor analytics. For now, we simulate the map.
+    citation_map = {p['id']: GRAPH.get_citation_count(p['id']) for p in PAPERS}
     return jsonify(get_top_cited_papers(PAPERS, citation_map, limit=10))
 
 
 @app.route("/api/analytics/keywords")
 def api_analytics_keywords():
-    citation_map = compute_citation_map(PAPERS)
+    citation_map = {p['id']: GRAPH.get_citation_count(p['id']) for p in PAPERS}
     return jsonify(get_keyword_statistics(PAPERS, citation_map))
 
 
@@ -88,8 +105,9 @@ def paper_page(paper_id):
     if not p:
         abort(404)
 
-    citation_map = compute_citation_map(PAPERS)
-    cites = int(citation_map.get(paper_id, 0))
+    # Use Graph Service for counts
+    cites = GRAPH.get_citation_count(paper_id)
+    pagerank = GRAPH.get_score(paper_id)
 
     title = escape(p.get("title") or "Untitled")
     authors = escape(", ".join(p.get("authors", [])))
@@ -102,11 +120,12 @@ def paper_page(paper_id):
         rp = PAPER_BY_ID.get(rid)
         if rp:
             rtitle = escape(rp.get("title") or rid)
+            r_cites = GRAPH.get_citation_count(rid)
             # Match the .paper style from results.html for consistency/cleanliness
             references_list.append(
                 f'<div class="paper" style="margin-bottom:12px; padding:12px; cursor:pointer;" onclick="window.location.href=\'/paper/{rid}\'">'
                 f'<div class="title" style="font-size:1.1rem">{rtitle}</div>'
-                f'<div class="meta">{rid}</div>'
+                f'<div class="meta">{rid} • {r_cites} Citations</div>'
                 f'</div>'
             )
         else:
@@ -144,7 +163,7 @@ def paper_page(paper_id):
         <main class="hero" style="text-align:left; margin-top:40px;">
           <!-- Article Header -->
           <div class="meta" style="border-bottom:none; margin-bottom:4px;">
-            {year} • {cites} Citations
+            {year} • {cites} Citations • Influence Score: {round(pagerank * 100, 4)}
           </div>
           <h1>{title}</h1>
           <div class="meta" style="font-size:14px; margin-bottom:24px;">By {authors}</div>
@@ -188,4 +207,4 @@ def serve_frontend(path):
 # ------------------------------------------------------------------
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=8000)

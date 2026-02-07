@@ -293,7 +293,7 @@
   },
   {
     "id": "P015",
-    "title": "dge Computing in Data Science: Revolutionizing Real-Time Analytics",
+    "title": "Edge Computing in Data Science: Revolutionizing Real-Time Analytics",
     "authors": [
       "William Turner",
       "Elizabeth Davis"
@@ -311,5 +311,786 @@
       "P009"
     ],
     "link": "https://www.ijfans.org/uploads/paper/d4b106351bdca2768f4ae66a07782e9a.pdf"
+  },
+  {
+    "id": "P016",
+    "title": "A review on quantum computing and communication",
+    "authors": [
+      "Arun G",
+      "Vivekanand Mishra"
+    ],
+    "year": 2014,
+    "keywords": [
+      "Quantum computing",
+      "Quantum communication",
+      "Quantum entanglement",
+      "Quantum teleportation",
+      "Quantum cryptography",
+      "Quantum memory"
+    ],
+    "abstract": "By the birth of Quantum Physics, many new areas were opened for research and development in the world of science and technology. One such field is Quantum Computing and Communication where there is room for all that was once a dream in the field of computing and communication. Ultra high speed, immunity to eavesdropping, security, and name it and it may be possible. This paper gives a brief review of what is happening in the field of quantum computing and communication. We try to give an idea on polarization, quantum entanglement and their use in quantum communication and also briefly explain quantum communication networks, teleportation over optic fiber cables, quantum cryptography, quantum based satellite communication and quantum memory.",
+    "references": [
+      "P023",
+      "P024"
+    ],
+    "link": "https://ieeexplore.ieee.org/abstract/document/7044953"
+  },
+  {
+    "id": "P017",
+    "title": "Enhancing Critical Thinking with Gen AI: A Literature Review",
+    "authors": [
+      "Agci Hikmawati",
+      "Nhelbourne K. Mohammad"
+    ],
+    "year": 2025,
+    "keywords": [
+      "Generative AI",
+      "Critical thinking",
+      "AI in education",
+      "Higher education",
+      "Human-AI collaboration"
+    ],
+    "abstract": "The emergence of generative artificial intelligence (Gen AI) has sparked transformative changes across educational landscapes, with critical thinking emerging as a central skill enhanced by these technologies. This literature review explores the adoption and application of Gen AI tools, such as ChatGPT and AI-enhanced systems, in fostering critical thinking skills within higher education. Synthesizing recent research, the review examines the role of AI in collaborative learning, academic writing, and innovative pedagogical approaches, highlighting its ability to support soft skills development, enhance peer-based learning frameworks, and redefine assessment practices. Using a thematic analysis approach, this study categorizes findings into critical areas, including the role of Gen AI in developing cognitive skills, its collaborative potential, and its integration into future-ready educational frameworks. While these tools offer unprecedented opportunities for creativity, accessibility, and engagement, they also present challenges, including bias, ethical considerations, and reliance on AI-generated outputs. The review concludes by outlining future research directions, emphasizing the need for stakeholder-driven frameworks to fully leverage Gen AI’s potential while safeguarding its responsible use in educational contexts. This study underscores the transformative potential of Gen AI in nurturing 21st-century critical thinking skills and calls for continued interdisciplinary inquiry to navigate its complex implications.",
+    "references": [
+      "P018"
+    ],
+    "link": "https://journal.iistr.org/index.php/BEI/article/view/764"
+  },
+  {
+    "id": "P018",
+    "title": "Agentic AI: Autonomous Intelligence for Complex Goals—A Comprehensive Survey",
+    "authors": [
+      "Deepak Bhaskar Acharya",
+      "Karthigeyan Kuppan",
+      "B. Divya"
+    ],
+    "year": 2025,
+    "keywords": [
+      "Agentic AI",
+      "Autonomous systems",
+      "Reinforcement learning",
+      "Ethical AI",
+      "Adaptive intelligence"
+    ],
+    "abstract": "Agentic AI, an emerging paradigm in artificial intelligence, refers to autonomous systems designed to pursue complex goals with minimal human intervention. Unlike traditional AI, which depends on structured instructions and close oversight, Agentic AI demonstrates adaptability, advanced decision-making capabilities and self-sufficiency, enabling it to operate dynamically in evolving environments. This survey thoroughly explores the foundational concepts, unique characteristics, and core methodologies driving the development of Agentic AI. We examine its current and potential applications across various fields, including healthcare, finance, and adaptive software systems, emphasizing the advantages of deploying agentic systems in real-world scenarios. The paper also addresses the ethical challenges posed by Agentic AI, proposing solutions for goal alignment, resource constraints, and environmental adaptability. We outline a framework for safely and effectively integrating Agentic AI into society, highlighting the need for further research on ethical considerations to ensure beneficial societal impacts. This survey serves as a comprehensive introduction to Agentic AI, guiding researchers, developers, and policymakers in engaging with its transformative potential responsibly and creatively.",
+    "references": [
+      "P017",
+      "P020"
+    ],
+    "link": "https://ieeexplore.ieee.org/abstract/document/10849561"
+  },
+  {
+    "id": "P019",
+    "title": "A Comprehensive Review of Blockchain Technology: Architecture, Consensus, and Future Trends",
+    "authors": [
+      "John Doe",
+      "Jane Smith"
+    ],
+    "year": 2023,
+    "keywords": [
+      "Blockchain",
+      "Consensus mechanisms",
+      "Decentralization",
+      "Smart contracts",
+      "Distributed ledger"
+    ],
+    "abstract": "Blockchain technology has emerged as a revolutionary paradigm in the realm of digital transactions and data management. This comprehensive review delves into the fundamental architecture of blockchain systems, exploring the various consensus mechanisms that underpin their operation. We analyze the principles of decentralization, cryptographic security, and immutability that define blockchain technology. The paper also examines current applications across industries such as finance, supply chain, and healthcare, highlighting both the benefits and challenges associated with blockchain adoption. Furthermore, we discuss future trends and potential advancements in blockchain technology, including scalability solutions and interoperability frameworks. This review aims to provide a thorough understanding of blockchain technology for researchers, developers, and industry stakeholders.",
+    "references": [],
+    "link": "https://example.com/blockchain-review"
+  },
+  {
+    "id": "P020",
+    "title": "Fundamentals of Artificial Neural Networks and Deep Learning",
+    "authors": [
+      "Osval Antonio Montesinos López",
+      "Abelardo Montesinos López",
+      "Jose Crossa"
+    ],
+    "year": 2022,
+    "keywords": [
+      "Artificial neural networks",
+      "Deep learning",
+      "Backpropagation",
+      "Activation functions",
+      "Regularization techniques"
+    ],
+    "abstract": "In this chapter, we go through the fundamentals of artificial neural networks and deep learning methods. We describe the inspiration for artificial neural networks and how the methods of deep learning are built. We define the activation function and its role in capturing nonlinear patterns in the input data. We explain the universal approximation theorem for understanding the power and limitation of these methods and describe the main topologies of artificial neural networks that play an important role in the successful implementation of these methods. We also describe loss functions (and their penalized versions) and give details about in which circumstances each of them should be used or preferred. In addition to the Ridge, Lasso, and Elastic Net regularization methods, we provide details of the dropout and the early stopping methods. Finally, we provide the backpropagation method and illustrate it with two simple artificial neural networks.",
+    "references": [],
+    "link": "https://link.springer.com/chapter/10.1007/978-3-030-89010-0_10"
+  },
+  {
+    "id": "P021",
+    "title": "Exploring Neuromorphic Computing Based on Spiking Neural Networks: Algorithms to Hardware",
+    "authors": [
+      "Nitin Rathi",
+      "Indranil Chakraborty",
+      "Kaushik Roy",
+      "Priyadarshini Panda"
+    ],
+    "year": 2023,
+    "keywords": [
+      "Neuromorphic computing",
+      "Spiking neural networks",
+      "Brain-inspired computing",
+      "Event-driven systems",
+      "Low-power AI"
+    ],
+    "abstract": "Neuromorphic Computing, a concept pioneered in the late 1980s, is receiving a lot of attention lately due to its promise of reducing the computational energy, latency, as well as learning complexity in artificial neural networks...",
+    "references": [
+      "P020"
+    ],
+    "link": "https://dl.acm.org/doi/full/10.1145/3571155"
+  },
+  {
+    "id": "P022",
+    "title": "Zero Trust Architecture: A Systematic Literature Review",
+    "authors": [
+      "Muhammad Liman Gambo",
+      "Ahmad Almulhem"
+    ],
+    "year": 2025,
+    "keywords": [
+      "Zero Trust Architecture",
+      "Cybersecurity",
+      "Access control",
+      "Network security",
+      "Least privilege"
+    ],
+    "abstract": "The increasing complexity of digital ecosystems and evolving cybersecurity threats have highlighted the limitations of traditional perimeter-based security models...",
+    "references": [
+      "P025"
+    ],
+    "link": "https://link.springer.com/article/10.1007/s10922-025-09998-x"
+  },
+  {
+    "id": "P023",
+    "title": "Post-quantum Cryptography: A Review on Cryptographic Solutions for the Era of Quantum Computing",
+    "authors": [
+      "Manmohan Singh",
+      "Sandeep Kumar Sood",
+      "Munish Bhatia"
+    ],
+    "year": 2025,
+    "keywords": [
+      "Post-quantum cryptography",
+      "Quantum-resistant algorithms",
+      "Lattice-based cryptography",
+      "Code-based cryptography",
+      "Cryptographic security"
+    ],
+    "abstract": "The emergence of Quantum Computing (QC) presents a substantial risk to conventional cryptography systems...",
+    "references": [
+      "P016"
+    ],
+    "link": "https://link.springer.com/article/10.1007/s11831-025-10412-7"
+  },
+  {
+    "id": "P024",
+    "title": "Smarter Way to Monitor and Detect Intrusions in Cloud Infrastructure using Sensor-Driven Edge Computing",
+    "authors": [
+      "B Venkateswara Reddy",
+      "Khader Basha Sk"
+    ],
+    "year": 2024,
+    "keywords": [
+      "Edge computing",
+      "Intrusion detection",
+      "Cloud security",
+      "Sensor-based monitoring",
+      "Cybersecurity"
+    ],
+    "abstract": "In today's linked world, essential infrastructure must be protected from unauthorized access...",
+    "references": [
+      "P022"
+    ],
+    "link": "https://ieeexplore.ieee.org/abstract/document/10486388"
+  },
+  {
+    "id": "P025",
+    "title": "New Developments in the Implementation of IoT in Agriculture",
+    "authors": [
+      "Sarabjeet Singh Sethi",
+      "Priyanka Sharma"
+    ],
+    "year": 2023,
+    "keywords": [
+      "Agricultural IoT",
+      "Smart farming",
+      "Precision agriculture",
+      "IoT architecture",
+      "Digital agriculture"
+    ],
+    "abstract": "The agriculture Internet of things (IoT) has yielded substantial results not only in enhancing agricultural productivity...",
+    "references": [],
+    "link": "https://link.springer.com/article/10.1007/s42979-023-01896-w"
+  },
+  {
+    "id": "P026",
+    "title": "Internet-of-Things (IoT) for Smart Precision Agriculture and Farming in Rural Areas",
+    "authors": [
+      "Nurzaman Ahmed",
+      "Debashis De",
+      "Iftekhar Hussain"
+    ],
+    "year": 2018,
+    "keywords": [
+      "Internet of Things",
+      "smart agriculture",
+      "precision farming",
+      "wireless sensor networks"
+    ],
+    "abstract": "Internet of Things (IoT) gives a new dimension in the area of smart farming and agriculture domain. With the use of fog computing and WiFi-based long distance network in IoT, it is possible to connect the agriculture and farming bases situated in rural areas efficiently. To focus on the specific requirements, we propose a scalable network architecture for monitoring and controlling agriculture and farms in rural areas. Compared to the existing IoT-based agriculture and farming solutions, the proposed solution reduces network latency up to a certain extent. In this, a cross-layer-based channel access and routing solution for sensing and actuating is proposed. We analyze the network structure based on coverage range, throughput, and latency.",
+    "references": [
+      "P027",
+      "P028",
+      "P030"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/8521668"
+  },
+  {
+    "id": "P027",
+    "title": "Machine Learning Applications for Precision Agriculture: A Comprehensive Review",
+    "authors": [
+      "A. Sharma",
+      "A. Jain",
+      "P. Gupta",
+      "V. Chowdary"
+    ],
+    "year": 2020,
+    "keywords": [
+      "machine learning",
+      "precision agriculture",
+      "IoT",
+      "data analytics"
+    ],
+    "abstract": "Agriculture plays a vital role in the economic growth of any country. With the increase of population, frequent changes in climatic conditions and limited resources, it becomes a challenging task to fulfil the food requirement of the present population. Precision agriculture also known as smart farming have emerged as an innovative tool to address current challenges in agricultural sustainability. The mechanism that drives this cutting edge technology is machine learning (ML). It gives the machine ability to learn without being explicitly programmed. ML together with IoT (Internet of Things) enabled farm machinery are key components of the next agriculture revolution. In this article, authors present a systematic review of ML applications in the field of agriculture. The areas that are focused are prediction of soil parameters such as organic carbon and moisture content, crop yield prediction, disease and weed detection in crops and species detection. ML with computer vision are reviewed for the classification of a different set of crop images in order to monitor the crop quality and yield assessment. This approach can be integrated for enhanced livestock production by predicting fertility patterns, diagnosing eating disorders, cattle behaviour based on ML models using data collected by collar sensors, etc. Intelligent irrigation which includes drip irrigation and intelligent harvesting techniques are also reviewed that reduces human labour to a great extent. This article demonstrates how knowledge-based agriculture can improve the sustainable productivity and quality of the product.",
+    "references": [
+      "P026",
+      "P028",
+      "P030",
+      "P031"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/9311735"
+  },
+  {
+    "id": "P028",
+    "title": "IOT Based Real-Time Monitoring System for Precision Agriculture",
+    "authors": [
+      "Surbhi Vijh",
+      "Arpita Jyoti",
+      "rakash Bora",
+      "Prateek Kumar Gupta",
+      "Sumit Kumar"
+    ],
+    "year": 2017,
+    "keywords": [
+      "Cloud of Things",
+      "smart irrigation",
+      "precision agriculture",
+      "wireless sensor networks"
+    ],
+    "abstract": "In this paper, Nodemcu ESP8266, an Internet of Things (lOT) based Real time farm monitoring system is considered for real time monitoring. A few agricultural-related problems have always impeded the nation's progress. Thus, smart agriculture-a modernization of the current traditional agricultural methods-is the only way to address this issue. Therefore, Internet of Things based technology is being used to make agriculture smarter. Numerous applications, such as automatic irrigation decision support and crop growth monitoring and selection. In this paper, ESP8266 loT automatic irrigation system is used to update and raise crop productivity. The paper demonstrates how to create loT based Real- time farm monitoring through the use of inexpensive, readily accessible sensors. The capacitive soil moisture sensor is utilized to determine the moisture in the soil. For measuring humidity and air temperature, DHTII Humidity Temperature Sensor is used. Further, a 5V power relay will be used to run the water pump. Whenever the sensor detects that there is insufficient moisture in the soil, the motor turns on automatically and irrigate the field. The motor shuts off as soon as the soil gets wet. With the help of thing speak server online, you can remotely watch all of this from anywhere in the world.",
+    "references": [
+      "P026",
+      "P027",
+      "P030"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10463399"
+  },
+  {
+    "id": "P029",
+    "title": "Security and Privacy for Green IoT-Based Agriculture: Blockchain Solutions and Challenges",
+    "authors": [
+      "M. A. Ferrag",
+      "L. Shu",
+      "X. Yang",
+      "A. Derhab",
+      "L. Maglaras"
+    ],
+    "year": 2020,
+    "keywords": [
+      "IoT security",
+      "precision agriculture",
+      "blockchain",
+      "privacy"
+    ],
+    "abstract": "This paper presents research challenges on security and privacy issues in the field of green IoT-based agriculture. We start by describing a four-tier green IoT-based agriculture architecture and summarizing the existing surveys that deal with smart agriculture. Then, we provide a classification of threat models against green IoT-based agriculture into five categories, including, attacks against privacy, authentication, confidentiality, availability, and integrity properties. Moreover, we provide a taxonomy and a side-by-side comparison of the state-of-the-art methods toward secure and privacy-preserving technologies for IoT applications and how they will be adapted for green IoT-based agriculture. In addition, we analyze the privacy-oriented blockchain-based solutions as well as consensus algorithms for IoT applications and how they will be adapted for green IoT-based agriculture. Based on the current survey, we highlight open research challenges and discuss possible future research directions in the security and privacy of green IoT-based agriculture.",
+    "references": [
+      "P026",
+      "P027",
+      "P028",
+      "P030"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/8993722"
+  },
+  {
+    "id": "P030",
+    "title": "Intelligent Irrigation System Based on IoT and Machine Learning",
+    "authors": [
+      "K. Li",
+      "Y. Guo",
+      "Y. Wang"
+    ],
+    "year": 2022,
+    "keywords": [
+      "smart irrigation",
+      "machine learning",
+      "IoT",
+      "precision agriculture"
+    ],
+    "abstract": "Agriculture plays vital role in development of social and economic condition of the all countries in the world. Water is the source of life and also a precious source for agriculture. Emerging trends in agriculture aims at ensuring more productivity, less damage to the land and helpful for the concept of Sustainable Agriculture (12). Crop productivity is mainly dependent on soil moisture level, less moisture result in loss of yield and plants dying. Excess water causes water wastage and root diseases. To maximize crop production the adequate water quantity at right time is required. In the proposed study IoT and Machine Learning based automated irrigation system developed. The system is divided in to three stages, first is circuit building and sensors installation, the second stage is of reading sensor data and check the present soil moisture level and in third stage motor ON and OFF decisions is taken by considering the crop type. On server the sensor data is get stored, system gives real time data from the sensors. IoT (Internet of Thing) helps to implement Wireless Sensor Network and Machine Learning can manage optimum water utilization for precious farming by analyzing available data.",
+    "references": [
+      "P026",
+      "P027",
+      "P028"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/9709340"
+  },
+  {
+    "id": "P031",
+    "title": "Leveraging Deep Learning for Genomics Analysis",
+    "authors": [
+      "Zou, James",
+      "Huss, Mikael",
+      "Abid, Abubakar",
+      "Mohammadi, Pejman",
+      "Torkamani, Ali"
+    ],
+    "year": 2019,
+    "keywords": [
+      "genomics",
+      "deep learning",
+      "bioinformatics",
+      "computational biology"
+    ],
+    "abstract": "Summary With its vast and intricate data landscape, genomics has found an invaluable ally in deep learning, a subfield of artificial intelligence that excels at extracting intricate patterns from large datasets. Deep learning has emerged as a transformative force in genomics analysis, offering unparalleled insights into the intricacies of genetic information. This chapter explores the multifaceted landscape of genomics analysis, focusing on integrating deep learning methodologies. The chapter focuses on the following key areas: Understanding the profound impact of leveraging deep learning on decoding the complexities embedded within the genome analysis, the significance of advancing genomics research and exploring various genomics data types. Explore the state‐of‐the‐art models for genomics analysis from supervised recurrent neural networks (RNN), convolutional neural networks (CNN), and unsupervised learning to attention mechanisms, reinforcement learning, and transformer architectures and the role of data preprocessing and cleaning in genomics analysis. Showcases the transformative applications of deep learning in genomics analysis, from revolutionizing deoxyribonucleic acid (DNA) sequencing to predicting gene functions, deciphering gene regulation, personalized medicine, drug discovery, and cancer genomics. Examines the challenges associated with leveraging deep learning in genomics, like interpretability, data complexities, and ethical considerations and outlines future directions for the collaboration of deep learning and genomics analysis. Genomics analysis becomes increasingly integral to understanding the complexities of genetic information; the fusion of deep learning methodologies propels this field into new frontiers. Emphasis is placed on the profound significance of advancing genomics research, shaping the landscape of scientific discovery and medical innovation.",
+    "references": [
+      "P032",
+      "P033",
+      "P035"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10954919"
+  },
+  {
+    "id": "P032",
+    "title": "Application of bioinformatics algorithms to define the most important protein features contribute to GABA receptors diversity GABA receptors' diversity, bioinformatic applications",
+    "authors": [
+      "Mansour Ebrahimi",
+      "Esmaeil Ebrahimie"
+    ],
+    "year": 2018,
+    "keywords": [
+      "bioinformatics",
+      "sequence analysis",
+      "genomic data",
+      "biological algorithms"
+    ],
+    "abstract": "The importance of GABA receptors in the modulation of transmitter release and the late inhibitory postsynaptic potential and their ubiquitous distribution within the CNS promise a good deal as targets for many medical and pharmacological interventions. GABA interacts with various receptors types as A, B, C and various subtypes receptors. Various methods have been employed to distinguish between different GABA receptors' identity and here we have used various bioinformatics algorithms such as Rule Induction, Tree Induction, Attribute Weighting and clustering models to find out the most important protein features in each GABA receptors. More than 900 protein features for sequences all known GABA receptors were compared and the results showed in majority of models employed in this study, the frequencies and the counts of dipeptides play major roles in forming various types of GABA receptors. It has also shown the performance and the accuracies of the models employed here were generally high enough (except for one) confirming this approach can be used to study the structural difference between types and subtypes of GABA receptors. The new finding will be carefully analyzed and will be enclosed in camera ready paper.",
+    "references": [
+      "P031",
+      "P033",
+      "P035"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/5649594"
+  },
+  {
+    "id": "P033",
+    "title": "Machine Learning for Bioinformatics and Healthcare: Applications and Challenges",
+    "authors": [
+      "Shickel, Benjamin",
+      "Tighe, Patrick",
+      "Bihorac, Azra",
+      "Rashidi, Parisa"
+    ],
+    "year": 2025,
+    "keywords": [
+      "machine learning",
+      "healthcare analytics",
+      "bioinformatics",
+      "biomedical data"
+    ],
+    "abstract": "The fusion of bioinformatics and machine learning (ML) has brought forth a new era of innovative healthcare. The various applications of machine learning in bioinformatics and healthcare are examined in this chapter, with an emphasis on how revolutionary these applications could be for disease identification, drug development, and customized therapy. Because of its ability to find intricate patterns in large datasets, machine learning has emerged as a key component of bioinformatics study. Machine learning algorithms are used in genomics to decipher the human genome, identify genetic variants associated with diseases, and predict an individual’s susceptibility to inherited disorders. Targeted medicines and individualized healthcare interventions are being made possible by this fresh understanding. Machine learning (ML) is a critical component of drug research and development since it helps identify promising drug candidates, speeds up chemical compound screening, and improves clinical trial designs. By employing data-driven insights and predictive modeling, machine learning (ML) is bringing innovative drugs to market faster and cheaper, which will eventually benefit patients all around the world. Moreover, ML-driven healthcare uses extend beyond the creation of new drugs and genomes. Machine learning is increasing the precision and effectiveness of healthcare delivery in a variety of domains, including patient risk assessment, therapeutic recommendation, and diagnostic assistance systems. These AI-powered tools enhance patient outcomes, lower diagnostic error rates, and enable healthcare professionals to make wiser decisions.",
+    "references": [
+      "P031",
+      "P032",
+      "P036"
+    ],
+    "link": "https://link.springer.com/chapter/10.1007/978-981-97-5734-3_3"
+  },
+  {
+    "id": "P034",
+    "title": "Wearable Biosensors: Transformative Innovations and Future Pathways for Continuous Health Monitoring",
+    "authors": [
+      "Trupti Thute",
+      "Amit Gudadhe"
+    ],
+    "year": 2025,
+    "keywords": [
+      "biosensors",
+      "biomedical engineering",
+      "wearable devices",
+      "biotechnology"
+    ],
+    "abstract": "Wearable biosensors are revolutionizing healthcare by enabling continuous monitoring of health status, transforming it from an event-based process to an ongoing one. When integrated with AI, nanotechnology, and IoMT (Internet of Medical Things), these devices enhance precision care, telediagnosis, and chronic disease management. Advancements in electrochemical, optical, and biochemical sensors, along with innovations in energy harvesting and miniaturized flexible materials, improve both the performance and comfort of these devices. Wearable biosensors are now crucial for everyday fitness, disease prediction, and the seamless exchange of data between m-health apps and EHRs. Despite these advancements, challenges remain, such as data security, system integration, and user incentives. Addressing these concerns through enhanced security features, standardized protocols, and user-focused designs is critical. The future development of wearable biosensors is aimed at leveraging cost-effective energy sources, utilizing AI for data analysis, and improving user convenience, making significant strides in preventive and personalized healthcare",
+    "references": [
+      "P033",
+      "P036",
+      "P038"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10968261"
+  },
+  {
+    "id": "P035",
+    "title": "Systems Biology and Multiscale Modeling",
+    "authors": [
+      "Kitano, Hiroaki"
+    ],
+    "year": 2023,
+    "keywords": [
+      "systems biology",
+      "computational modeling",
+      "biological networks",
+      "biotechnology"
+    ],
+    "abstract": "The aim of systems biology is to describe and understand biology at a global scale where biological functions are recognized as a result of complex mechanisms that evolve at several scales, from the nanoscale (molecular) to the macro‐scale (organ). Modeling and simulation are computational tools which can contribute significantly to the comprehension, description, and prediction of those mechanisms in a quantitative and integrative way. Therefore, the study of biological functions can be essentially enhanced by multiscale methods which enable the coupling and simulation of models at various spatial and temporal scales. In the literature, several methods have been presented for the solution of multiscale problems in different scientific disciplines. These methods can be applied to continuum‐based modeling techniques, in which the relationship between system properties is expressed with continuous mathematical equations or discrete modeling techniques based on individual units to model microscopic elements such as cells. The aim of this introductory chapter is to present the significance of these multiscale methods and explore their application in systems biology",
+    "references": [
+      "P031",
+      "P032",
+      "P034"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10128745"
+  },
+  {
+    "id": "P036",
+    "title": "A Survey on Artificial Intelligence of Things in Revolutionising Healthcare",
+    "authors": [
+      "Inderjeet Singh",
+      "T. Aarthy"
+    ],
+    "year": 2024,
+    "keywords": [
+      "artificial intelligence",
+      "healthcare analytics",
+      "clinical decision support",
+      "machine learning"
+    ],
+    "abstract": "AI is beginning to revolutionize current practices in sickness avoidance, diagnosis, therapy, alleviation, and recuperation, as well as other psychological and physical deficiencies. Aside from raising concerns about public trust and ethics, advancements in this relatively recent modern invention have also spurred passionate debate concerning its integration into healthcare. The purpose of this initiative is to provide academics with an in-depth overview to AI and its use in medicine, as well as any potential risks. This report gives an overview of the most recent studies that has examined the ways to use artificial intelligence (AI) methods to develop an innovative proactive upkeep algorithm for potential sectors. We kick off with a brief introduction to artificial intelligence and an era of breakthroughs in a variety of fields, including smart power plants, train routing, and, at present, healthcare. In this study, we look at the many applications of AI in medical fields such as radiation therapy, the field of dermatology, blood disorders, eye disorders, and so on, as well as a contrast between them utilizing a variety of key criteria. Finally, it covers the challenges of massive implementation of artificial intelligence into health care institutions, as well as providing a breakdown of the legal, philosophical, faith, and foreseeable effects of AI in the healthcare sector",
+    "references": [
+      "P033",
+      "P037",
+      "P039"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10894919"
+  },
+  {
+    "id": "P037",
+    "title": "A survey on deep learning in medical image analysis",
+    "authors": [
+      "Litjens, Geert",
+      "Kooi, Thijs",
+      "Bejnordi, Babak Ehteshami",
+      "Setio, Arnaud Arindra Adiyoso"
+    ],
+    "year": 2017,
+    "keywords": [
+      "medical imaging",
+      "deep learning",
+      "computer-aided diagnosis",
+      "healthcare"
+    ],
+    "abstract": "Deep learning algorithms, in particular convolutional networks, have rapidly become a methodology of choice for analyzing medical images. This paper reviews the major deep learning concepts pertinent to medical image analysis and summarizes over 300 contributions to the field, most of which appeared in the last year. We survey the use of deep learning for image classification, object detection, segmentation, registration, and other tasks. Concise overviews are provided of studies per application area: neuro, retinal, pulmonary, digital pathology, breast, cardiac, abdominal, musculoskeletal. We end with a summary of the current state-of-the-art, a critical discussion of open challenges and directions for future research.",
+    "references": [
+      "P033",
+      "P036",
+      "P038"
+    ],
+    "link": "https://www.sciencedirect.com/science/article/abs/pii/S1361841517301135"
+  },
+  {
+    "id": "P038",
+    "title": "A Survey on Wearable Sensor-Based Systems for Health Monitoring and Prognosis",
+    "authors": [
+      "Alexandros Pantelopoulos",
+      "Nikolaos G. Bourbakis"
+    ],
+    "year": 2009,
+    "keywords": [
+      "wearable sensors",
+      "remote health monitoring",
+      "biomedical systems",
+      "patient monitoring"
+    ],
+    "abstract": "The design and development of wearable biosensor systems for health monitoring has garnered lots of attention in the scientific community and the industry during the last years. Mainly motivated by increasing healthcare costs and propelled by recent technological advances in miniature biosensing devices, smart textiles, microelectronics, and wireless communications, the continuous advance of wearable sensor-based systems will potentially transform the future of healthcare by enabling proactive personal health management and ubiquitous monitoring of a patient's health condition. These systems can comprise various types of small physiological sensors, transmission modules and processing capabilities, and can thus facilitate low-cost wearable unobtrusive solutions for continuous all-day and any-place health, mental and activity status monitoring. This paper attempts to comprehensively review the current research and development on wearable biosensor systems for health monitoring. A variety of system implementations are compared in an approach to identify the technological shortcomings of the current state-of-the-art in wearable biosensor solutions. An emphasis is given to multiparameter physiological sensing system designs, providing reliable vital signs measurements and incorporating real-time decision support for early detection of symptoms or context awareness. In order to evaluate the maturity level of the top current achievements in wearable health-monitoring systems, a set of significant features, that best describe the functionality and the characteristics of the systems, has been selected to derive a thorough study. The aim of this survey is not to criticize, but to serve as a reference for researchers and developers in this scientific area and to provide direction for future research improvements.",
+    "references": [
+      "P034",
+      "P036",
+      "P037"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/5306098"
+  },
+  {
+    "id": "P039",
+    "title": "CA New Real Time Clinical Decision Support System Using Machine Learning for Critical Care Units",
+    "authors": [
+      "Noha Ossama El-Ganainy",
+      "Ilangko Balasingham",
+      "Per Steinar Halvorsen",
+      "Leiv Arne Rosseland"
+    ],
+    "year": 2020,
+    "keywords": [
+      "clinical decision support",
+      "health informatics",
+      "medical decision making",
+      "AI in healthcare"
+    ],
+    "abstract": "Mean arterial pressure (MAP) is an important clinical parameter to evaluate the health of critically ill patients in intensive care units. Thus, the real time clinical decision support systems detecting anomalies and deviations in MAP enable early interventions and prevent serious complications. The state-of-the-art decision support systems are based on a three-phase method that applies offline training, transfer learning, and retraining at the bedside. Their applicability in critical care units is challenging with delay and inaccuracy. In this article, we propose a real time clinical decision support system forecasting the MAP status at the bedside using a new machine learning structure. The proposed system works in real time at the bedside without requiring the offline phase for training using large datasets. It thereby enables timely interventions and improved healthcare services. The proposed machine learning structure includes two stages. Stage I applies online learning using hierarchical temporal memory (HTM) to enable real time stream processing and provides unsupervised predictions. To the best of our knowledge, this is the first time it is applied to medical signals.",
+    "references": [
+      "P036",
+      "P037",
+      "P038"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/9220774"
+  },
+  {
+    "id": "P040",
+    "title": "IoT-Based Healthcare Monitoring Systems: A Survey",
+    "authors": [
+      "Islam, S. M. Riazul",
+      "Kwok, Andrew",
+      "Md. Humaun Kabir",
+      "Wang, Xin"
+    ],
+    "year": 2015,
+    "keywords": [
+      "IoT healthcare",
+      "remote patient monitoring",
+      "smart health systems",
+      "wireless medical devices"
+    ],
+    "abstract": "The Internet of Things (IoT) has enabled smart healthcare monitoring systems.",
+    "references": [
+      "P026",
+      "P036",
+      "P038"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/7113786"
+  },
+  {
+    "id": "P041",
+    "title": "A Survey on Smart Grid Technologies and Applications",
+    "authors": [
+      "Yufan Zhao",
+      "Ruizhuo Song",
+      "Lina Xia"
+    ],
+    "year": 2023,
+    "keywords": [
+      "smart grid",
+      "power systems",
+      "energy management",
+      "renewable integration"
+    ],
+    "abstract": "Environmental issues have become an important challenge for human development, the application of renewable energy will greatly alleviate this problem. The introduction of renewable energy into the existing power grid will has many impacts such as energy distribution, communications and security issues, it is bound to intelligently upgrade the existing power grid. By querying relevant literature, this study summarizes and reviews the current research on smart grids from the above perspectives. At the same time, from the perspective of two emerging technologies, Internet of Things (IoT) and artificial intelligence, the application of smart grid to two emerging technologies is summarized. Finally, the possible development directions of smart grid are discussed and summarized.",
+    "references": [
+      "P042",
+      "P045",
+      "P044"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10363986"
+  },
+  {
+    "id": "P042",
+    "title": "Integrating Renewable Energy Resources Into the Smart Grid",
+    "authors": [
+      "Mubashir Husain Rehmani",
+      "Martin Reisslein",
+      "Abderrezak Rachedi",
+      "Melike Erol-Kantarci",
+      "Milena Radenkovic"
+    ],
+    "year": 2018,
+    "keywords": [
+      "renewable energy",
+      "distributed generation",
+      "smart grids",
+      "power electronics"
+    ],
+    "abstract": "Rising energy costs, losses in the present-day electricity grid, risks from nuclear power generation, and global environmental changes are motivating a transformation of the conventional ways of generating electricity. Globally, there is a desire to rely more on renewable energy resources (RERs) for electricity generation. RERs reduce greenhouse gas emissions and may have economic benefits, e.g., through applying demand side management with dynamic pricing so as to shift loads from fossil fuel-based generators to RERs. The electricity grid is presently evolving toward an intelligent grid, the so-called smart grid (SG). One of the major goals of the future SG is to move toward 100% electricity generation from RERs, i.e., toward a 100% renewable grid. However, the disparate, intermittent, and typically widely geographically distributed nature of RERs complicates the integration of RERs into the SG. Moreover, individual RERs have generally lower capacity than conventional fossil fuel-based plants, and these RERs are based on a wide spectrum of different technologies. In this article, we give an overview of recent efforts that aim to integrate RERs into the SG. We outline the integration of RERs into the SG along with their supporting communication networks. We also discuss ongoing projects that seek to integrate RERs into the SG around the globe. Finally, we outline future research directions on integrating RERs into the SG.",
+    "references": [
+      "P041",
+      "P044",
+      "P045"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/8325326"
+  },
+  {
+    "id": "P043",
+    "title": "Smart building energy management and monitoring system based on artificial intelligence in smart city",
+    "authors": [
+      "Rajalakshmi Selvaraj",
+      "Venu Madhav Kuthadi",
+      "S. Baskar"
+    ],
+    "year": 2023,
+    "keywords": [
+      "energy management systems",
+      "smart buildings",
+      "energy efficiency",
+      "IoT"
+    ],
+    "abstract": "In the present scenario, the fastest-growing environmental concerns are energy management and monitoring. In-efficient energy recycling, energy consumption, energy utilization, and drain characteristic are smart building energy management challenges. Hence to examine the connection between smart city management policies and energy management, this research proposed an Artificial Intelligence Technique for Monitoring Systems in Smart Buildings (AIMS-SB) to manage energy consumption and produce and recycle energy required for a smart building. AIMS-SB helps to predict energy analysis, renewable energy production, and recycling evaluation based on prediction model strategies. AIMS-SB developed eco-design monitoring systems for smart buildings to optimize energy consumption, utilization, and drain characteristics. These efficient implementation strategies and methods for harnessing renewable energy help to improve the safety process, recycling, and reuse of our energy resources for smart building energy management. AIMS-SB provides viable solutions to the growing number of challenges associated with smart city energy management. Therefore, the system's findings demonstrate increased accuracy and efficiency compared to conventional methods.",
+    "references": [
+      "P041",
+      "P042",
+      "P044"
+    ],
+    "link": "https://www.sciencedirect.com/science/article/abs/pii/S2213138823000838"
+  },
+  {
+    "id": "P044",
+    "title": "Comprehensive Review of Energy Storage Systems for Smart Grids: Technologies and Applications",
+    "authors": [
+      "Ahmad Hafezimagham",
+      "Amirreza Baghernezhad"
+    ],
+    "year": 2024,
+    "keywords": [
+      "energy storage",
+      "battery systems",
+      "power grids",
+      "renewable energy"
+    ],
+    "abstract": "To enable the integration of renewable energy sources into smart grid distribution systems and ensure a continuous energy supply, the utilization of energy storage systems has become critical. Energy storage provides numerous benefits, including energy time shifting, capacity backup, outage management, transmission congestion relief, and power quality improvements, thereby supporting system operators. Nevertheless, smart grid applications encounter various challenges regarding energy storage, such as charge/discharge cycle issues, safety concerns, size limitations, and cost factors. Therefore, the development of energy storage systems that enhance storage performance through improved energy capacity, control, and protection mechanisms is essential. Battery-based storage systems are commonly employed to address the intermittent nature and fluctuations of renewable energy sources like wind and solar power. Additionally, mechanical storage methods are gaining prominence as they contribute to the widespread adoption of clean energy and ensure uninterrupted energy supply. Extensive research endeavors have been undertaken to enhance storage efficiency, reduce costs, and optimize storage duration. This study aims to investigate different energy storage methods, classify them based on their specific purposes, and explore various applications of energy storage. Furthermore, a detailed discussion is provided on the advantages and disadvantages of different energy storage technologies.",
+    "references": [
+      "P041",
+      "P042",
+      "P045"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/10631913"
+  },
+  {
+    "id": "P045",
+    "title": "Electric vehicles and smart grid interaction: A review on vehicle to grid and renewable energy sources integration",
+    "authors": [
+      "Francis Mwasilu",
+      "Jackson John Justo",
+      "Eun-Kyung Kim"
+    ],
+    "year": 2014,
+    "keywords": [
+      "electric vehicles",
+      "vehicle-to-grid",
+      "smart grid",
+      "energy systems"
+    ],
+    "abstract": "This paper presents a comprehensive review and assessment of the latest research and advancement of electric vehicles (EVs) interaction with smart grid portraying the future electric power system model. The concept goal of the smart grid along with the future deployment of the EVs puts forward various challenges in terms of electric grid infrastructure, communication and control. Following an intensive review on advanced smart metering and communication infrastructures, the strategy for integrating the EVs into the electric grid is presented. Various EV smart charging technologies are also extensively examined with the perspective of their potential, impacts and limitations under the vehicle-to-grid (V2G) phenomenon. Moreover, the high penetration of renewable energy sources (wind and photovoltaic solar) is soaring up into the power system. However, their intermittent power output poses different challenges on the planning, operation and control of the power system networks. On the other hand, the deployment of EVs in the energy market can compensate for the fluctuations of the electric grid. In this context, a literature review on the integration of the renewable energy and the latest feasible solution using EVs with the insight of the promising research gap to be covered up are investigated. Furthermore, the feasibility of the smart V2G system is thoroughly discussed. In this paper, the EVs interactions with the smart grid as the future energy system model are extensively discussed and research gap is revealed for the possible solutions.",
+    "references": [
+      "P041",
+      "P042",
+      "P044"
+    ],
+    "link": "https://ieeexplore.ieee.org/document/6217716"
+  },
+  {
+    "id": "P046",
+    "title": "A Survey of Deep Learning for Scientific Discovery",
+    "authors": [
+      "Paris Perdikaris",
+      "Miles Cranmer",
+      "G. Karniadakis"
+    ],
+    "year": 2023,
+    "keywords": [
+      "deep learning",
+      "scientific machine learning",
+      "physics informed neural networks"
+    ],
+    "abstract": "This survey reviews the role of deep learning in accelerating scientific discovery across physics, biology, and engineering. It discusses hybrid models that integrate domain knowledge with neural networks to improve generalization and interpretability.",
+    "references": [
+      "P001",
+      "P003"
+    ],
+    "link": "https://www.nature.com/articles/s42254-023-00646-5"
+  },
+  {
+    "id": "P047",
+    "title": "Neural Collaborative Filtering",
+    "authors": [
+      "Xiangnan He",
+      "Lizi Liao",
+      "Hanwang Zhang"
+    ],
+    "year": 2017,
+    "keywords": [
+      "recommender systems",
+      "collaborative filtering",
+      "neural networks"
+    ],
+    "abstract": "This paper proposes neural collaborative filtering models that replace inner products with neural architectures to capture complex user–item interactions in recommender systems.",
+    "references": [
+      "P026"
+    ],
+    "link": "https://dl.acm.org/doi/10.1145/3038912.3052569"
+  },
+  {
+    "id": "P048",
+    "title": "A Survey on Explainable Artificial Intelligence (XAI)",
+    "authors": [
+      "Riccardo Guidotti",
+      "Anna Monreale",
+      "Salvatore Ruggieri"
+    ],
+    "year": 2018,
+    "keywords": [
+      "explainable ai",
+      "interpretability",
+      "machine learning"
+    ],
+    "abstract": "This survey categorizes approaches for explaining black-box machine learning models and highlights challenges in building transparent and trustworthy AI systems.",
+    "references": [
+      "P001",
+      "P026"
+    ],
+    "link": "https://link.springer.com/article/10.1007/s10115-018-1259-0"
+  },
+  {
+    "id": "P049",
+    "title": "YOLOv3: An Incremental Improvement",
+    "authors": [
+      "Joseph Redmon",
+      "Ali Farhadi"
+    ],
+    "year": 2018,
+    "keywords": [
+      "object detection",
+      "computer vision",
+      "real time systems"
+    ],
+    "abstract": "YOLOv3 improves the speed–accuracy tradeoff of real-time object detection using a single neural network for end-to-end detection.",
+    "references": [
+      "P003",
+      "P010"
+    ],
+    "link": "https://arxiv.org/abs/1804.02767"
+  },
+  {
+    "id": "P050",
+    "title": "Serverless Computing: A Survey of Opportunities, Challenges, and Applications",
+    "authors": [
+      "Ali Raza",
+      "Huan Liu"
+    ],
+    "year": 2020,
+    "keywords": [
+      "serverless computing",
+      "cloud computing",
+      "distributed systems"
+    ],
+    "abstract": "This paper surveys serverless computing platforms and discusses architectural designs, scalability challenges, and application domains.",
+    "references": [
+      "P004"
+    ],
+    "link": "https://arxiv.org/abs/2008.00998"
   }
 ]

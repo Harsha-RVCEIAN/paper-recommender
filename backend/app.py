@@ -21,26 +21,75 @@ CORS(app)
 
 # ---- Load dataset once at startup ----
 BASE_DIR = os.path.dirname(__file__)
-DATA_PATH = os.path.join(BASE_DIR, "data", "papers.json")
+DATA_PATH = os.path.join(BASE_DIR, "papers.json")
 
 PAPERS, PAPER_BY_ID = load_papers(DATA_PATH)
 
 # ---- Initialize Advanced Structures (DSA Project Core) ----
-print("Initializing Citation Graph (PageRank)...")
+print("\n" + "="*70)
+print("🔧 DATA STRUCTURE #1: CITATION GRAPH (Directed Graph)")
+print("="*70)
+print("📊 Structure: Adjacency List representation using Python dictionaries")
+print("🎯 Purpose: Model citation relationships between papers")
+print("⚡ Algorithm: PageRank (iterative graph traversal)")
+print("📈 Complexity:")
+print("   - Build: O(N + E) where N=papers, E=citation edges")
+print("   - PageRank: O(K * N) where K=iterations (30)")
+print("   - Query: O(1) for retrieving influence score")
+print("="*70)
 GRAPH = CitationGraph()
 GRAPH.build_graph(PAPERS)
 GRAPH.compute_pagerank(iterations=30)  # High precision
-print("Citation Graph built.")
+print(f"✅ Graph built: {len(PAPERS)} nodes, PageRank computed")
+print("="*70 + "\n")
 
-print("Initializing Inverted Index...")
+#-----its like building indexing the data for faster search like hashmaps of sets----
+#-----fro every keyword we are mapping related papers to it for faster search ----
+print("="*70)
+print("🔧 DATA STRUCTURE #2: INVERTED INDEX (HashMap)")
+print("="*70)
+print("📊 Structure: HashMap<Token, List<PaperID>> using Python defaultdict")
+print("🎯 Purpose: Fast keyword-to-papers lookup for search queries")
+print("⚡ Algorithm: Tokenization + Hash-based indexing")
+print("📈 Complexity:")
+print("   - Build: O(N * M) where N=papers, M=avg tokens per paper")
+print("   - Search: O(1) average case for keyword lookup")
+print("   - TF-IDF: O(1) for document frequency retrieval")
+print("="*70)
 INDEX = SearchIndex()
 INDEX.build_index(PAPERS)
-print("Inverted Index built.")
+print(f"✅ Index built: {len(INDEX.inverted_index)} unique tokens indexed")
+print(f"📚 Total documents: {INDEX.total_docs}")
+print("="*70 + "\n")
+
+
+def reload_data():
+    """Re-load papers from disk and rebuild all DSA structures (Graph, Index)."""
+    global PAPERS, PAPER_BY_ID, GRAPH, INDEX
+    print("🔄 Hot-reloading dataset and rebuilding indices...")
+    PAPERS, PAPER_BY_ID = load_papers(DATA_PATH)
+    
+    # Rebuild Graph
+    GRAPH = CitationGraph()
+    GRAPH.build_graph(PAPERS)
+    GRAPH.compute_pagerank(iterations=30)
+    
+    # Rebuild Index
+    INDEX = SearchIndex()
+    INDEX.build_index(PAPERS)
+    print(f"✅ Reload complete: {len(PAPERS)} papers indexed.")
+    return len(PAPERS)
 
 
 # ------------------------------------------------------------------
 # API ROUTES
 # ------------------------------------------------------------------
+
+@app.route("/api/reload", methods=["POST"])
+def api_reload():
+    """Endpoint to trigger data reload."""
+    count = reload_data()
+    return jsonify({"status": "success", "papers_count": count})
 
 @app.route("/api/search")
 def api_search():
@@ -53,11 +102,49 @@ def api_search():
     if not query:
         return jsonify([])
 
+    # Print initialization status before each search
+    print('\n' + '='*70)
+    print('📦 STATUS: DATA STRUCTURES READY & INITIALIZED')
+    print('='*70)
+    print('1️⃣  TRIE (Prefix Tree): 🟢 Ready (Preprocessing & Term mapping)')
+    print('2️⃣  CITATION GRAPH: 🟢 Ready (' + str(len(PAPERS)) + ' nodes, PageRank cached)')
+    print('3️⃣  INVERTED INDEX: 🟢 Ready (' + str(len(INDEX.inverted_index)) + ' unique tokens)')
+    print('='*70)
+
+    print('\n' + '='*70)
+    print('🔍 SEARCH REQUEST: "' + query + '"')
+    print('='*70)
+    print('')
+    
+    print('📊 PIPELINE DATA STRUCTURES IN USE:')
+    print('─'*70)
+    
     # step 1: O(1) retrieval using Inverted Index
+    print('1️⃣  INVERTED INDEX (HashMap)')
+    print('    ├─ Operation: HashMap<Token, List<PaperID>> lookup')
+    print('    └─ Complexity: O(T) where T = query tokens')
     candidate_ids = INDEX.search(query)
+    print(f'    ✅ Retrieved {len(candidate_ids)} candidates')
+    print('')
+    
+    print('2️⃣  SET (Candidate IDs)')
+    print('    ├─ Operation: Unique ID management')
+    print(f'    └─ Size: {len(candidate_ids)} unique papers')
+    print('')
     
     # step 2: ranking using Graph Scores + TF-IDF logic
+    print('⚡ RANKING PHASE (Advanced DSA Scoring)')
+    print('─'*70)
     ranked = rank_papers(candidate_ids, INDEX, GRAPH, query)
+    
+    print('')
+    print('3️⃣  LIST (Results)')
+    print('    ├─ Operation: Timsort O(N log N)')
+    print(f'    └─ Final count: {len(ranked)} ranked papers')
+    print('')
+    
+    print(f'✅ COMPLETE: Returning {len(ranked)} results')
+    print('='*70 + '\n')
 
     return jsonify(ranked)
 

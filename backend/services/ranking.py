@@ -54,13 +54,55 @@ def rank_papers(candidate_ids: set, index_service, graph_service, query: str):
     if not candidate_ids:
         return []
 
+    print("    📋 RANKING PROCESS - Data Structures:")
+    print("    " + "─"*66)
+    
+    print("    ├─ INPUT: Set of candidate paper IDs")
+    print(f"    │  └─ Size: {len(candidate_ids)} papers to rank")
+    print("    │")
+    
     tokens = index_service.tokenize(query)
+    print("    ├─ LIST (Query Tokens)")
+    print(f"    │  ├─ Tokenized query into {len(tokens)} tokens")
+    print(f"    │  └─ Tokens: {tokens}")
+    print("    │")
+    
+    print("    ├─ HASHMAP (Paper Lookup)")
+    print("    │  ├─ Structure: doc_map in SearchIndex")
+    print("    │  ├─ Operation: O(1) paper retrieval by ID")
+    print("    │  └─ Purpose: Get paper details for scoring")
+    print("    │")
+
     ranked_results = []
 
     # Final Rank Component Weights (Tuning)
     W_TFIDF = 1.0
     W_PAGERANK = 15.0  # Graph-based authority is a strong signal
     W_POPULARITY = 2.0 # Raw citation count is a minor signal
+    
+    print("    ├─ SCORING ALGORITHMS & DATA STRUCTURES (The 'How'):")
+    print("    │")
+    print("    │  ├─ 1. QUERY RELEVANCE:")
+    print("    │  │  ├─ LOGIC: Matches in Fields / Word Rarity (TF-IDF)")
+    print("    │  │  └─ STRUCTURE: HashMap (Inverted Index) + HashMap (Document Frequencies)")
+    print("    │")
+    print("    │  ├─ 2. CITATION INFLUENCE:")
+    print("    │  │  ├─ LOGIC: Recursive Authority Score (PageRank)")
+    print("    │  │  └─ STRUCTURE: Directed Graph (Adjacency List) + Hash Table mapping")
+    print("    │")
+    print("    │  ├─ 3. REFERENCE OVERLAP:")
+    print("    │  │  ├─ LOGIC: Bibliographic Density based on In-Degree")
+    print("    │  │  └─ STRUCTURE: Adjacency Set intersection + Node mapping")
+    print("    │")
+    print("    │  └─ 4. TRIE (PRE-SEARCH):")
+    print("    │     ├─ LOGIC: Prefix-based selection matching characters to terms")
+    print("    │     └─ STRUCTURE: Tree-based Prefixes (Front-end only)")
+    print("    │")
+    print("    ├─ WEIGHTS (Tuning parameters):")
+    print(f"    │  ├─ Relevance Weight: {W_TFIDF}")
+    print(f"    │  ├─ Influence Weight: {W_PAGERANK}")
+    print(f"    │  └─ Popularity Weight: {W_POPULARITY}")
+    print("    │")
 
     for pid in candidate_ids:
         paper = index_service.get_paper(pid)
@@ -94,6 +136,12 @@ def rank_papers(candidate_ids: set, index_service, graph_service, query: str):
         ranked_results.append(p_copy)
 
     # Sort Results by the calculated composite score
+    print("    └─ SORTING (Timsort)")
+    print("       ├─ Algorithm: Python's built-in sort (Timsort)")
+    print(f"       ├─ Input size: {len(ranked_results)} papers")
+    print("       ├─ Sort key: Composite score (descending)")
+    print(f"       └─ Complexity: O(N log N) where N={len(ranked_results)}")
+    
     ranked_results.sort(key=lambda x: x['score'], reverse=True)
 
     return ranked_results

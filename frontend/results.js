@@ -179,27 +179,39 @@
           <!-- SCORE BARS -->
           <div class="score-wrap">
             <div class="score-label">Overall relevance</div>
-            <div class="score-bar">
-              <div class="score-fill" data-fill="${scoreOverall}"></div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="score-bar" style="flex: 1;">
+                <div class="score-fill" data-fill="${scoreOverall}"></div>
+              </div>
+              <div class="score-percentage">${scoreOverall}%</div>
             </div>
 
             <div class="score-breakdown researcher-only">
               <div class="score-row">
                 <span>Query relevance</span>
-                <div class="score-bar small">
-                  <div class="score-fill" data-fill="${scoreQuery}"></div>
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+                  <div class="score-bar small" style="flex: 1;">
+                    <div class="score-fill" data-fill="${scoreQuery}"></div>
+                  </div>
+                  <div class="score-percentage">${scoreQuery}%</div>
                 </div>
               </div>
               <div class="score-row">
                 <span>Citation influence</span>
-                <div class="score-bar small">
-                  <div class="score-fill" data-fill="${scoreCite}"></div>
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+                  <div class="score-bar small" style="flex: 1;">
+                    <div class="score-fill" data-fill="${scoreCite}"></div>
+                  </div>
+                  <div class="score-percentage">${scoreCite}%</div>
                 </div>
               </div>
               <div class="score-row">
                 <span>Reference overlap</span>
-                <div class="score-bar small">
-                  <div class="score-fill" data-fill="${scoreRefs}"></div>
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+                  <div class="score-bar small" style="flex: 1;">
+                    <div class="score-fill" data-fill="${scoreRefs}"></div>
+                  </div>
+                  <div class="score-percentage">${scoreRefs}%</div>
                 </div>
               </div>
             </div>

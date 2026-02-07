@@ -488,6 +488,15 @@ body[data-mode="researcher"] .score-breakdown {
   display: block;
 }
 
+/* Researcher-only elements visibility */
+.researcher-only {
+  display: none;
+}
+
+body[data-mode="researcher"] .researcher-only {
+  display: block;
+}
+
 .score-row {
   display: flex;
   align-items: center;
@@ -505,6 +514,15 @@ body[data-mode="researcher"] .score-breakdown {
 .score-bar.small {
   height: 4px;
   flex: 1;
+}
+
+.score-percentage {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 35px;
+  text-align: right;
 }
 
 /* Analytics & Other */

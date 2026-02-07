@@ -165,40 +165,57 @@ function createSuggestionsContainer() {
   const style = document.createElement('style');
   style.id = 'autocomplete-styles';
   style.textContent = `
+    .search-card.search-active {
+      z-index: 10001 !important;
+      position: relative;
+    }
     .suggestions-panel {
       position: absolute;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background: var(--paper, #fff);
-      border: 2px solid var(--ink, #000); /* Newspaper style */
-      border-top: none;
-      box-shadow: 4px 4px 0 var(--ink, #000);
+      left: -2px;
+      right: -2px;
+      width: calc(100% + 4px);
+      background: #ffffff !important; /* Forces solid white */
+      border: 2px solid var(--ink, #000);
+      border-top: 1px solid #ddd;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
       display: none;
-      z-index: 999;
-      max-height: 320px;
-      overflow: auto;
+      z-index: 10002 !important;
+      max-height: 420px;
+      overflow-y: auto;
       margin-top: 4px;
       padding: 0;
+      opacity: 1 !important;
     }
     .suggestion-item {
-      padding: 10px 16px;
+      padding: 14px 20px;
       cursor: pointer;
-      font-size: 14px;
-      font-family: 'Lora', serif;
-      border-bottom: 1px dotted var(--muted, #ccc);
-      transition: background 0.1s;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      color: #000 !important;
+      background-color: #ffffff; /* Base color without important */
+      border-bottom: 1px solid #f0f0f0;
+      transition: none; /* Instant feedback for selection */
     }
-    .suggestion-item:last-child { border-bottom: none; }
-    .suggestion-item:hover, .suggestion-item.selected {
-      background: var(--ink, #000);
-      color: var(--bg, #fff);
+    .suggestion-item:last-child {
+      border-bottom: none;
     }
-    .suggestion-item:hover .meta, .suggestion-item.selected .meta {
-      color: #ccc;
+    /* GREY SELECTOR - Higher specificity to ensure it shows */
+    .suggestions-panel .suggestion-item:hover, 
+    .suggestions-panel .suggestion-item.selected {
+      background-color: #e8e8e8 !important;
+      color: var(--accent, #c02626) !important;
+      font-weight: bold;
     }
-    .primary { font-weight: 600; }
-    .meta { font-size: 11px; color: var(--muted, #666); font-family: 'Oswald', sans-serif; text-transform: uppercase; margin-top: 2px; }
+    .suggestions-panel::-webkit-scrollbar {
+      width: 8px;
+    }
+    .suggestions-panel::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .suggestions-panel::-webkit-scrollbar-thumb {
+      background: #bbb;
+      border-radius: 4px;
+    }
   `;
   document.head.appendChild(style);
 })();
@@ -217,6 +234,17 @@ let currentSelectionIndex = -1; // Track keyboard selection
 /* ================= Load Data ================= */
 
 async function loadAllTermsAndBuildTrie() {
+  console.log('\n' + '='.repeat(70));
+  console.log('🔧 DATA STRUCTURE #3: TRIE (Prefix Tree) - Frontend');
+  console.log('='.repeat(70));
+  console.log('📊 Structure: Tree with character nodes for prefix matching');
+  console.log('🎯 Purpose: Fast autocomplete suggestions for search queries');
+  console.log('⚡ Algorithm: Character-by-character tree traversal');
+  console.log('📈 Complexity:');
+  console.log('   - Build: O(N * L) where N=keywords, L=avg length');
+  console.log('   - Autocomplete: O(P + K) where P=prefix, K=results');
+  console.log('='.repeat(70));
+
   let papers = [];
 
   try {
@@ -236,8 +264,13 @@ async function loadAllTermsAndBuildTrie() {
     }
   }
 
-  if (!papers.length) return;
+  if (!papers.length) {
+    console.log('⚠️ No papers loaded for Trie');
+    console.log('='.repeat(70) + '\n');
+    return;
+  }
 
+  let keywordCount = 0;
   for (const p of papers) {
     const cite = Number(p.citations_count || 0);
 
@@ -248,6 +281,7 @@ async function loadAllTermsAndBuildTrie() {
       trie.insert(t);
       displayMap[l] = t;
       citationsMap[l] = Math.max(citationsMap[l] || 0, cite);
+      keywordCount++;
     });
 
     /* 
@@ -263,6 +297,12 @@ async function loadAllTermsAndBuildTrie() {
     }
     */
   }
+
+  const uniqueTerms = Object.keys(displayMap).length;
+  console.log(`✅ Trie built successfully`);
+  console.log(`📚 Indexed ${uniqueTerms} unique terms from ${keywordCount} total keywords`);
+  console.log(`📄 Processed ${papers.length} papers`);
+  console.log('='.repeat(70) + '\n');
 }
 
 /* ================= Suggestions ================= */
@@ -278,6 +318,29 @@ function renderSuggestions(prefix) {
   if (!suggestionsEl) return;
   currentSelectionIndex = -1;
 
+  console.log('\n' + '='.repeat(70));
+  console.log('📦 PRE-SEARCH STATUS: DATA STRUCTURES READY');
+  console.log('='.repeat(70));
+  console.log('1️⃣  TRIE: ' + Object.keys(displayMap).length + ' terms indexed');
+  console.log('2️⃣  HASHMAP (displayMap): ✅ Ready');
+  console.log('3️⃣  HASHMAP (citationsMap): ✅ Ready');
+  console.log('='.repeat(70));
+
+  console.log('\n🔍 AUTOCOMPLETE QUERY: "' + prefix + '"');
+  console.log('─'.repeat(70));
+
+  console.log('📊 DATA STRUCTURES IN USE:');
+  console.log('1️⃣  TRIE: Traversing nodes to find matching prefixes');
+  console.log('2️⃣  HASHMAP (displayMap): Retrieving original case-sensitive text');
+  console.log('3️⃣  HASHMAP (citationsMap): Fetching citation metadata for sorting');
+  console.log('');
+
+  console.log('💡 CALCULATION LOGIC:');
+  console.log('─'.repeat(70));
+  console.log('• Query Relevance: Matches / Total words (TF-IDF)');
+  console.log('• Citation Influence: Recursive Graph Authority (PageRank)');
+  console.log('• Reference Overlap: Count of local paper citations');
+  console.log('');
   const list = trie
     .suggestions(prefix, 8)
     .map(k => ({
@@ -287,6 +350,12 @@ function renderSuggestions(prefix) {
     }))
     .sort((a, b) => b.citations - a.citations);
 
+  console.log('⚡ ALGORITHM: Sorting (Timsort)');
+  console.log('    └─ Complexity: O(K log K) where K=' + list.length);
+
+  console.log('✅ RESULT: ' + list.length + ' suggestions ready');
+  console.log('='.repeat(70) + '\n');
+
   if (!list.length) return clearSuggestions();
 
   suggestionsEl.innerHTML = '';
@@ -295,17 +364,15 @@ function renderSuggestions(prefix) {
   list.forEach((s, idx) => {
     const div = document.createElement('div');
     div.className = 'suggestion-item';
-    div.setAttribute('data-term', s.term); // Store term for keyboard retrieval
+    div.setAttribute('data-term', s.term);
     div.setAttribute('data-index', idx);
-    div.innerHTML = `
-      <div class="primary">${escapeHtml(s.term)}</div>
-      <div class="meta">Citations: ${s.citations}</div>
-    `;
+    div.textContent = s.term;
+
     div.onpointerdown = e => {
       e.preventDefault();
       inputEl.value = s.term;
       clearSuggestions();
-      doSearch(); // Auto search on click? Maybe just fill. Let's strictly just fill as before or better? The user didn't ask to auto search. Let's just fill.
+      doSearch();
     };
     suggestionsEl.appendChild(div);
   });
@@ -379,8 +446,7 @@ if (inputEl) {
         if (selectedItem) {
           inputEl.value = selectedItem.getAttribute('data-term');
           clearSuggestions();
-          // Optional: trigger search immediately? User said "select trie keywords", usually implies selection.
-          // I'll leave it as just selection to be safe, but usually Enter on a selection means "pick this".
+          doSearch();
         }
       } else {
         doSearch();

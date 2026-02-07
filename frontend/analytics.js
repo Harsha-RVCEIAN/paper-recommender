@@ -206,6 +206,35 @@
   }
 
   /* ---------------- Init ---------------- */
+  const btnReload = document.getElementById('btn-reload');
+  const spanStatus = document.getElementById('reload-status');
+
+  if (btnReload) {
+    btnReload.onclick = async () => {
+      btnReload.disabled = true;
+      btnReload.textContent = 'Syncing...';
+      spanStatus.textContent = 'Rebuilding Graph & Index...';
+
+      try {
+        const res = await fetch('/api/reload', { method: 'POST' });
+        if (res.ok) {
+          const syncData = await res.json();
+          spanStatus.textContent = `Success! ${syncData.papers_count} papers synced.`;
+          // Refresh view
+          const ok = await loadFromAnalyticsAPI();
+          if (!ok) await loadFromAllEndpoint();
+        } else {
+          spanStatus.textContent = 'Error during sync.';
+        }
+      } catch (e) {
+        spanStatus.textContent = 'Connection failed.';
+      } finally {
+        btnReload.disabled = false;
+        btnReload.textContent = '🔄 Sync & Refresh Data';
+        setTimeout(() => { spanStatus.textContent = ''; }, 5000);
+      }
+    };
+  }
 
   const ok = await loadFromAnalyticsAPI();
   if (!ok) {

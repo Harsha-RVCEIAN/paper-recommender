@@ -111,17 +111,6 @@ npm start
 * Improve ranking using citation graphs
 * Add user profiles & personalization
 
----
-
-## 🤝 Contributing
-
-Currently not open for contributions.
-(Or define proper contribution guidelines if you want this to grow.)
-
----
-
-
----
 
 ## 👤 Author
 
@@ -129,13 +118,3 @@ Harsha
 GitHub: https://github.com/Harsha-RVCEIAN
 
 ---
-
-## 💥 Reality Check
-
-If your README doesn’t:
-
-* Explain what the project does in 10 seconds
-* Help someone run it in 2 minutes
-* Show proof (demo/screenshots)
-
-Then it’s not a README—it’s decoration.
